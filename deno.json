@@ -13,7 +13,8 @@
     "$std/": "https://deno.land/std@0.195.0/",
     "preact": "https://esm.sh/preact@10.16.0",
     "preact/": "https://esm.sh/preact@10.16.0/",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@6.2.0"
+    "preact-render-to-string": "https://esm.sh/preact-render-to-string@6.2.0",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
