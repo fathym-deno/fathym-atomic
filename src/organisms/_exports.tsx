@@ -23,3 +23,8 @@ export { PostForm, type PostFormProps } from "../src.deps.ts";
 export { PostWithFeed, type PostWithFeedProps } from "../src.deps.ts";
 
 export { ProfileDisplay, type ProfileDisplayProps } from "../src.deps.ts";
+
+export {
+  BuildFeedCard,
+  type BuildFeedCardProps,
+} from "./feed/BuildFeedCard.tsx";
