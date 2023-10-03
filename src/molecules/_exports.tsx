@@ -10,3 +10,5 @@ export {
   ResponsiveSet,
   type ResponsiveSetProps,
 } from "../src.deps.ts";
+
+export { type Tab, Tabs, type TabsProps } from "../src.deps.ts";
