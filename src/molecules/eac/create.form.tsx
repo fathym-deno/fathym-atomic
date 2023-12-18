@@ -1,7 +1,6 @@
 import { JSX } from "preact";
 import * as ArmResource from "npm:@azure/arm-subscriptions";
-import { Action, ActionGroup, classSet, Input } from "@fathym/atomic";
-import { callToActionStyles } from "../../styles/actions.tsx";
+import { Action, ActionGroup, Input, classSet } from "../../src.deps.ts";
 
 export type EaCCreateFormProps = JSX.HTMLAttributes<HTMLFormElement>;
 
@@ -65,10 +64,7 @@ export function EaCCreateForm(props: EaCCreateFormProps) {
         <>
           <Action
             type="submit"
-            class={classSet(
-              callToActionStyles.props,
-              "w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg",
-            )}
+            class="w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg"
           >
             Create Enterprise
           </Action>
