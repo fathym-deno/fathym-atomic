@@ -1,7 +1,6 @@
 import { JSX } from "preact";
-import { Action, ActionGroup, classSet, Input } from "@fathym/atomic";
 import { Location } from "npm:@azure/arm-subscriptions";
-import { callToActionStyles } from "../../styles/actions.tsx";
+import { Action, ActionGroup, Input, classSet } from "../../src.deps.ts";
 
 export type CloudCALZFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
   cloudLookup: string;
@@ -96,10 +95,7 @@ export default function CloudCALZForm(props: CloudCALZFormProps) {
         <>
           <Action
             type="submit"
-            class={classSet(
-              callToActionStyles.props,
-              "w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg",
-            )}
+            class="w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg"
           >
             Create CALZ
           </Action>
