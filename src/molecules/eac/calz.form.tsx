@@ -10,7 +10,7 @@ export type CloudCALZFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
   resGroupLookup?: string;
 };
 
-export default function CloudCALZForm(props: CloudCALZFormProps) {
+export function CloudCALZForm(props: CloudCALZFormProps) {
   return (
     <form
       method="post"
