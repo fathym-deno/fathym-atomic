@@ -9,7 +9,7 @@ export type CloudConnectAzureFormProps = {
   title?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export default function CloudConnectAzureForm(
+export function CloudConnectAzureForm(
   props: CloudConnectAzureFormProps
 ) {
   const title = props.title || 'Connect to Azure';
