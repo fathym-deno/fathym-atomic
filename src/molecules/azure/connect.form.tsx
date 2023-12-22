@@ -7,7 +7,7 @@ export type CloudConnectAzureFormProps = {
   description?: string;
 
   title?: string;
-} & JSX.HTMLAttributes<HTMLFormElement>;
+} & Omit<JSX.HTMLAttributes<HTMLFormElement>, "title">;
 
 export function CloudConnectAzureForm(
   props: CloudConnectAzureFormProps

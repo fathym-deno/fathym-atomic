@@ -8,7 +8,7 @@ export type CloudConnectExistingFormProps = {
   subs: Subscription[];
 
   title?: string;
-} & JSX.HTMLAttributes<HTMLFormElement>;
+} & Omit<JSX.HTMLAttributes<HTMLFormElement>, "title">;
 
 export function CloudConnectExistingForm(props: CloudConnectExistingFormProps) {
   const actionText = props.actionText || 'Connect Subscription';
