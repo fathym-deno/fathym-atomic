@@ -8,4 +8,4 @@ export {
 
 export { Logo, type LogoProps } from "./Logo.tsx";
 
-export * from "./forms/_exports.tsx";
+export * from "./forms/_exports.ts";

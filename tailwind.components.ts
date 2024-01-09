@@ -2,20 +2,14 @@ export default [
 	{
 		Root: import.meta.resolve("./"),
 		Components: [
-			"./src/atoms/forms/_exports.tsx",
 			"./src/atoms/Logo.tsx",
-			"./src/atoms/_exports.tsx",
 			"./src/molecules/azure/connect.form.tsx",
 			"./src/molecules/azure/existing.form.tsx",
 			"./src/molecules/eac/calz.form.tsx",
 			"./src/molecules/eac/connect.form.tsx",
 			"./src/molecules/eac/create.form.tsx",
-			"./src/molecules/_exports.tsx",
 			"./src/organisms/FathymHeader.tsx",
 			"./src/organisms/feed/BuildFeedCard.tsx",
-			"./src/organisms/_exports.tsx",
-			"./src/templates/_exports.tsx",
-			"./src/utils/_exports.tsx",
 		],
 	},
 	{
