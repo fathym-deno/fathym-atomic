@@ -1,5 +1,9 @@
 import {
   constructTailwindComponentsConfig,
+  FathymAtomicChatTailwindComponents,
+  FathymAtomicIoTTailwindComponents,
+  FathymAtomicReportsTailwindComponents,
+  FathymAtomicSocialTailwindComponents,
   FathymAtomicTailwindComponents,
 } from "./src/src.deps.ts";
 
@@ -11,5 +15,11 @@ await constructTailwindComponentsConfig(
       Extensions: [".tsx"],
     },
   ],
-  [...FathymAtomicTailwindComponents],
+  [
+    ...FathymAtomicTailwindComponents,
+    ...FathymAtomicChatTailwindComponents,
+    ...FathymAtomicIoTTailwindComponents,
+    ...FathymAtomicReportsTailwindComponents,
+    ...FathymAtomicSocialTailwindComponents,
+  ],
 );

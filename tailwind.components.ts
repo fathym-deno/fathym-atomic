@@ -34,4 +34,44 @@ export default [
 			"./src/templates/BasicLayout.tsx",
 		],
 	},
+	{
+		Root: 'https://deno.land/x/fathym_atomic_chat@v0.0.23/',
+		Components: [
+			"./src/molecules/ChatBox.tsx",
+			"./src/molecules/ChatInput.tsx",
+			"./src/organisms/ChatHistory.tsx",
+		],
+	},
+	{
+		Root: 'https://deno.land/x/fathym_atomic_iot@v0.0.40/',
+		Components: [
+			"./src/molecules/IoTDisplay.tsx",
+		],
+	},
+	{
+		Root: 'https://deno.land/x/fathym_atomic_reports@v0.0.13/',
+		Components: [
+			"./src/molecules/BasicSummary.tsx",
+			"./src/molecules/BulletList.tsx",
+			"./src/molecules/charts/BarChart.tsx",
+			"./src/molecules/charts/BubbleChart.tsx",
+			"./src/molecules/charts/DoughnutChart.tsx",
+			"./src/molecules/charts/FathymChart.tsx",
+			"./src/molecules/charts/LineChart.tsx",
+			"./src/molecules/charts/PieChart.tsx",
+			"./src/molecules/charts/PolarChart.tsx",
+			"./src/molecules/charts/RadarChart.tsx",
+			"./src/molecules/charts/ScatterChart.tsx",
+		],
+	},
+	{
+		Root: 'https://deno.land/x/fathym_atomic_social@v0.0.47/',
+		Components: [
+			"./src/organisms/FeedCard.tsx",
+			"./src/organisms/FeedCardList.tsx",
+			"./src/organisms/PostForm.tsx",
+			"./src/organisms/PostWithFeed.tsx",
+			"./src/organisms/ProfileDisplay.tsx",
+		],
+	},
 ];
