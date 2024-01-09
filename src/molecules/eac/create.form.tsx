@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import * as ArmResource from "npm:@azure/arm-subscriptions";
-import { Action, ActionGroup, Input, classSet } from "../../src.deps.ts";
+import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
 export type EaCCreateFormProps = JSX.HTMLAttributes<HTMLFormElement>;
 

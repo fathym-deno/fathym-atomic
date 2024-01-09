@@ -1,5 +1,5 @@
-import { JSX } from 'preact';
-import { Action, ActionGroup, classSet } from '../../src.deps.ts';
+import { JSX } from "preact";
+import { Action, ActionGroup, classSet } from "../../src.deps.ts";
 
 export type CloudConnectAzureFormProps = {
   actionText?: string;
@@ -10,21 +10,20 @@ export type CloudConnectAzureFormProps = {
 } & Omit<JSX.HTMLAttributes<HTMLFormElement>, "title">;
 
 export function CloudConnectAzureForm(
-  props: CloudConnectAzureFormProps
+  props: CloudConnectAzureFormProps,
 ) {
-  const title = props.title || 'Connect to Azure';
+  const title = props.title || "Connect to Azure";
 
-  const description =
-    props.description ||
-    'To get started in the cloud, please connect your Azure account.';
+  const description = props.description ||
+    "To get started in the cloud, please connect your Azure account.";
 
-    const actionText = props.actionText || 'Connect Now';
+  const actionText = props.actionText || "Connect Now";
 
   return (
     <form
       action="/cloud/azure/auth/signin"
       {...props}
-      class={classSet(props, 'w-full max-w-sm md:max-w-md mx-auto py-3 mt-8')}
+      class={classSet(props, "w-full max-w-sm md:max-w-md mx-auto py-3 mt-8")}
     >
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">

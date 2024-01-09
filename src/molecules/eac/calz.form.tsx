@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import { Location } from "npm:@azure/arm-subscriptions";
-import { Action, ActionGroup, Input, classSet } from "../../src.deps.ts";
+import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
 export type CloudCALZFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
   cloudLookup: string;
