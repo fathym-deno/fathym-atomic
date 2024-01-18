@@ -13,7 +13,7 @@ export default [
 		],
 	},
 	{
-		Root: 'https://deno.land/x/fathym_atomic@v0.0.104/',
+		Root: 'https://deno.land/x/fathym_atomic@v0.0.105/',
 		Components: [
 			"./src/atoms/Action.tsx",
 			"./src/atoms/forms/Input.tsx",
