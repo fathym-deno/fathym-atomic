@@ -4,7 +4,7 @@ import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 export type EaCManageHandlerFormProps = {
   entLookup: string;
   handlerLookup?: string;
-  handlerOrder?: string;
+  handlerOrder?: number;
   handlerApiPath?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
@@ -81,7 +81,7 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
               id="order"
               name="order"
               type="text"
-              value={props.handlerOrder || ""}
+              value={props.handlerOrder || 100}
               required
               placeholder="Enter EaC handler order"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
