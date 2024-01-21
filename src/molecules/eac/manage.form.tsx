@@ -1,10 +1,13 @@
 import { JSX } from "preact";
-import * as ArmResource from "npm:@azure/arm-subscriptions";
 import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
-export type EaCCreateFormProps = JSX.HTMLAttributes<HTMLFormElement>;
+export type EaCManageFormProps = {
+  entLookup?: string;
+  name?: string;
+  description?: string;
+} & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCCreateForm(props: EaCCreateFormProps) {
+export function EaCManageForm(props: EaCManageFormProps) {
   return (
     <form
       method="post"
@@ -21,6 +24,15 @@ export function EaCCreateForm(props: EaCCreateFormProps) {
             Create Enterprise
           </label>
 
+          {props.entLookup && (
+            <Input
+              id="entLookup"
+              name="entLookup"
+              type="hidden"
+              value={props.entLookup}
+            />
+          )}
+
           <div class="w-full p-3">
             <label
               for="name"
@@ -33,6 +45,7 @@ export function EaCCreateForm(props: EaCCreateFormProps) {
               id="name"
               name="name"
               type="text"
+              value={props.name || ""}
               required
               placeholder="Enter enterprise name"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
@@ -51,6 +64,7 @@ export function EaCCreateForm(props: EaCCreateFormProps) {
               id="description"
               name="description"
               type="text"
+              value={props.description || ""}
               multiline
               required
               placeholder="Enter enterprise description"

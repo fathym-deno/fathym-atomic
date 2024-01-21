@@ -7,7 +7,7 @@ export default [
 			"./src/molecules/azure/existing.form.tsx",
 			"./src/molecules/eac/calz.form.tsx",
 			"./src/molecules/eac/connect.form.tsx",
-			"./src/molecules/eac/create.form.tsx",
+			"./src/molecules/eac/manage.form.tsx",
 			"./src/organisms/FathymHeader.tsx",
 			"./src/organisms/feed/BuildFeedCard.tsx",
 		],
