@@ -2,10 +2,10 @@ import { JSX } from "preact";
 import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
 export type EaCManageHandlerFormProps = {
-  entLookup?: string;
-  handlerName?: string;
-  handlerDescription?: string;
-  handlerApiUrl?: string;
+  entLookup: string;
+  handlerLookup?: string;
+  handlerOrder?: string;
+  handlerApiPath?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
 export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
@@ -17,10 +17,7 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
     >
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">
-          <label
-            for="subscription-plan"
-            class="block uppercase tracking-wide font-bold mb-2 text-xl text-center"
-          >
+          <label class="block uppercase tracking-wide font-bold mb-2 text-xl text-center">
             {props.entLookup ? "Edit" : "Create"} EaC Handler
           </label>
 
@@ -35,59 +32,58 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
 
           <div class="w-full p-3">
             <label
-              for="name"
+              for="handlerLookup"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              Name
+              Handler Lookup
             </label>
 
             <Input
-              id="name"
-              name="name"
+              id="handlerLookup"
+              name="handlerLookup"
               type="text"
-              value={props.handlerName || ""}
+              value={props.handlerLookup || ""}
               required
-              placeholder="Enter EaC handler name"
+              placeholder="Enter EaC handler lookup"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
           <div class="w-full p-3">
             <label
-              for="description"
+              for="apiPath"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              Description
+              API Path
             </label>
 
             <Input
-              id="description"
-              name="description"
+              id="apiPath"
+              name="apiPath"
               type="text"
-              value={props.handlerDescription || ""}
+              value={props.handlerApiPath || ""}
               multiline
               required
-              placeholder="Enter EaC handler description"
+              placeholder="Enter EaC handler API Path"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
           <div class="w-full p-3">
             <label
-              for="description"
+              for="order"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              API URL
+              Order
             </label>
 
             <Input
-              id="apiUrl"
-              name="apiUrl"
+              id="order"
+              name="order"
               type="text"
-              value={props.handlerApiUrl || ""}
-              multiline
+              value={props.handlerOrder || ""}
               required
-              placeholder="Enter EaC handler API URL"
+              placeholder="Enter EaC handler order"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
