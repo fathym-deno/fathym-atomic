@@ -80,7 +80,7 @@ export function EaCManageForm(props: EaCManageFormProps) {
             type="submit"
             class="w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg"
           >
-            Create Enterprise
+            {props.entLookup ? "Save" : "Create"} Enterprise
           </Action>
         </>
       </ActionGroup>
