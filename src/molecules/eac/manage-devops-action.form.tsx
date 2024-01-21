@@ -6,6 +6,7 @@ export type EaCManageDevOpsActionFormProps = {
   doaLookup?: string;
   doaName?: string;
   doaDescription?: string;
+  doaPath?: string;
   doaTemplatePaths?: string[];
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
@@ -85,6 +86,25 @@ export function EaCManageDevOpsActionForm(
               multiline
               required
               placeholder="Enter EaC devops action description"
+              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div class="w-full p-3">
+            <label
+              for="path"
+              class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
+            >
+              Path (will be stored at path in the `.github/workflows` folder)
+            </label>
+
+            <Input
+              id="path"
+              name="path"
+              type="text"
+              value={props.doaPath || ""}
+              required
+              placeholder="Enter EaC devops action path"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
