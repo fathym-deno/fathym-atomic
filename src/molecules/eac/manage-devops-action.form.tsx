@@ -1,14 +1,17 @@
 import { JSX } from "preact";
 import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
-export type EaCManageHandlerFormProps = {
+export type EaCManageDevOpsActionFormProps = {
   entLookup: string;
-  handlerLookup?: string;
-  handlerOrder?: number;
-  handlerApiPath?: string;
+  doaLookup?: string;
+  doaName?: string;
+  doaDescription?: string;
+  doaTemplatePaths?: string[];
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
+export function EaCManageDevOpsActionForm(
+  props: EaCManageDevOpsActionFormProps,
+) {
   return (
     <form
       method="post"
@@ -18,7 +21,7 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide font-bold mb-2 text-xl text-center">
-            {props.handlerLookup ? "Edit" : "Create"} EaC Handler
+            {props.doaLookup ? "Edit" : "Create"} EaC DevOps Actions
           </label>
 
           <Input
@@ -30,57 +33,77 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
 
           <div class="w-full p-3">
             <label
-              for="handlerLookup"
+              for="doaLookup"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              Handler Lookup
+              DevOps Action Lookup
             </label>
 
             <Input
-              id="handlerLookup"
-              name="handlerLookup"
+              id="doaLookup"
+              name="doaLookup"
               type="text"
-              value={props.handlerLookup || ""}
+              value={props.doaLookup || ""}
               required
-              placeholder="Enter EaC handler lookup"
+              placeholder="Enter EaC devops action lookup"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
           <div class="w-full p-3">
             <label
-              for="apiPath"
+              for="name"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              API Path
+              Name
             </label>
 
             <Input
-              id="apiPath"
-              name="apiPath"
-              type="url"
-              value={props.handlerApiPath || ""}
+              id="name"
+              name="name"
+              type="text"
+              value={props.doaName || ""}
               required
-              placeholder="Enter EaC handler API Path"
+              placeholder="Enter EaC devops action name"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
           <div class="w-full p-3">
             <label
-              for="order"
+              for="description"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              Order
+              Description
             </label>
 
             <Input
-              id="order"
-              name="order"
+              id="description"
+              name="description"
               type="text"
-              value={props.handlerOrder || 100}
+              value={props.doaDescription || ""}
+              multiline
               required
-              placeholder="Enter EaC handler order"
+              placeholder="Enter EaC devops action description"
+              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div class="w-full p-3">
+            <label
+              for="templatePaths"
+              class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
+            >
+              Template Paths
+            </label>
+
+            <Input
+              id="templatePaths"
+              name="templatePaths"
+              value={props.doaTemplatePaths?.join("\n") || ""}
+              multiline
+              required
+              placeholder="Enter EaC devops action template paths"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
@@ -93,7 +116,7 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
             type="submit"
             class="w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg"
           >
-            {props.handlerLookup ? "Save" : "Create"} EaC Handler
+            {props.doaLookup ? "Save" : "Create"} EaC DevOps Action
           </Action>
         </>
       </ActionGroup>
