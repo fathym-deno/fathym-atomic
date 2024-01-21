@@ -8,7 +8,7 @@ export type EaCManageHandlerFormProps = {
   handlerApiUrl?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageHandler(props: EaCManageHandlerFormProps) {
+export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
   return (
     <form
       method="post"
