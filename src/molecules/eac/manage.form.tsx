@@ -3,8 +3,8 @@ import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
 export type EaCManageFormProps = {
   entLookup?: string;
-  name?: string;
-  description?: string;
+  entName?: string;
+  entDescription?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
 export function EaCManageForm(props: EaCManageFormProps) {
@@ -45,7 +45,7 @@ export function EaCManageForm(props: EaCManageFormProps) {
               id="name"
               name="name"
               type="text"
-              value={props.name || ""}
+              value={props.entName || ""}
               required
               placeholder="Enter enterprise name"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
@@ -64,7 +64,7 @@ export function EaCManageForm(props: EaCManageFormProps) {
               id="description"
               name="description"
               type="text"
-              value={props.description || ""}
+              value={props.entDescription || ""}
               multiline
               required
               placeholder="Enter enterprise description"
