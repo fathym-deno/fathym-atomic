@@ -21,14 +21,12 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
             {props.entLookup ? "Edit" : "Create"} EaC Handler
           </label>
 
-          {props.entLookup && (
-            <Input
-              id="entLookup"
-              name="entLookup"
-              type="hidden"
-              value={props.entLookup}
-            />
-          )}
+          <Input
+            id="entLookup"
+            name="entLookup"
+            type="hidden"
+            value={props.entLookup}
+          />
 
           <div class="w-full p-3">
             <label
@@ -60,9 +58,8 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
             <Input
               id="apiPath"
               name="apiPath"
-              type="text"
+              type="url"
               value={props.handlerApiPath || ""}
-              multiline
               required
               placeholder="Enter EaC handler API Path"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
