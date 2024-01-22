@@ -9,6 +9,8 @@ export default [
 			"./src/molecules/eac/connect.form.tsx",
 			"./src/molecules/eac/manage-devops-action.form.tsx",
 			"./src/molecules/eac/manage-handler.form.tsx",
+			"./src/molecules/eac/manage-iot-device.form.tsx",
+			"./src/molecules/eac/manage-iot.form.tsx",
 			"./src/molecules/eac/manage-secret.form.tsx",
 			"./src/molecules/eac/manage.form.tsx",
 			"./src/organisms/FathymHeader.tsx",
