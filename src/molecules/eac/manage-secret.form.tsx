@@ -1,18 +1,30 @@
 import { JSX } from "preact";
 import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import { useEffect, useState } from "preact/hooks";
 
-export type EaCManageDevOpsActionFormProps = {
+export type EaCManageSecretFormProps = {
+  cloudOptions: { cloudName: string; cloudLookup: string }[];
   entLookup: string;
-  doaLookup?: string;
-  doaName?: string;
-  doaDescription?: string;
-  doaPath?: string;
-  doaTemplatePaths?: string[];
+  keyVaultOptions: {
+    [cloudLookup: string]: { keyVaultName: string; keyVaultLookup: string }[];
+  };
+  secretLookup?: string;
+  secretName?: string;
+  secretDescription?: string;
+  secretValue?: string;
+  secretCloudLookup?: string;
+  secretKeyVaultLookup?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageDevOpsActionForm(
-  props: EaCManageDevOpsActionFormProps,
-) {
+export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
+  const [curCloudLookup, setCurCloudLookup] = useState(
+    props.secretCloudLookup || "",
+  );
+
+  const cloudChanged = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {
+    setCurCloudLookup(e.currentTarget.value);
+  };
+
   return (
     <form
       method="post"
@@ -22,7 +34,7 @@ export function EaCManageDevOpsActionForm(
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide font-bold mb-2 text-xl text-center">
-            {props.doaLookup ? "Edit" : "Create"} EaC DevOps Actions
+            {props.secretLookup ? "Edit" : "Create"} EaC Secrets
           </label>
 
           <Input
@@ -34,19 +46,19 @@ export function EaCManageDevOpsActionForm(
 
           <div class="w-full p-3">
             <label
-              for="doaLookup"
+              for="secretLookup"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              DevOps Action Lookup
+              Secret Lookup
             </label>
 
             <Input
-              id="doaLookup"
-              name="doaLookup"
+              id="secretLookup"
+              name="secretLookup"
               type="text"
-              value={props.doaLookup || ""}
+              value={props.secretLookup || ""}
               required
-              placeholder="Enter EaC devops action lookup"
+              placeholder="Enter EaC secret lookup"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
@@ -63,9 +75,9 @@ export function EaCManageDevOpsActionForm(
               id="name"
               name="name"
               type="text"
-              value={props.doaName || ""}
+              value={props.secretName || ""}
               required
-              placeholder="Enter EaC devops action name"
+              placeholder="Enter EaC secret name"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
@@ -82,54 +94,89 @@ export function EaCManageDevOpsActionForm(
               id="description"
               name="description"
               type="text"
-              value={props.doaDescription || ""}
+              value={props.secretDescription || ""}
               multiline
               required
-              placeholder="Enter EaC devops action description"
+              placeholder="Enter EaC secret description"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
           <div class="w-full p-3">
             <label
-              for="path"
+              for="value"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              Path
+              Value
             </label>
 
-            <p>Will be stored at path in the `.github/workflows` folder.</p>
-
             <Input
-              id="path"
-              name="path"
+              id="value"
+              name="value"
               type="text"
-              value={props.doaPath || ""}
+              value={props.secretValue || ""}
+              multiline
               required
-              placeholder="Enter EaC devops action path"
+              placeholder="Enter EaC secret value"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
           <div class="w-full p-3">
             <label
-              for="templatePaths"
+              for="cloudLookup"
               class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
             >
-              Template Paths
+              Cloud
             </label>
 
-            <p>Put each template path on a new line.</p>
-
-            <Input
-              id="templatePaths"
-              name="templatePaths"
-              value={props.doaTemplatePaths?.join("\n") || ""}
-              multiline
+            <select
+              id="cloudLookup"
+              name="cloudLookup"
+              type="text"
+              value={props.secretCloudLookup || ""}
               required
-              placeholder="Enter EaC devops action template paths"
+              onChange={cloudChanged}
+              placeholder="Enter EaC secret cloud"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
-            />
+            >
+              <option value="">-- Select EaC cloud --</option>
+              {props.cloudOptions.map((option) => {
+                return (
+                  <option value={option.cloudLookup}>{option.cloudName}</option>
+                );
+              })}
+            </select>
+          </div>
+
+          <div class="w-full p-3">
+            <label
+              for="keyVaultLookup"
+              class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
+            >
+              Key Vault
+            </label>
+
+            <select
+              id="keyVaultLookup"
+              name="keyVaultLookup"
+              type="text"
+              value={props.secretKeyVaultLookup || ""}
+              disabled={!curCloudLookup}
+              required
+              placeholder="Enter EaC secret key vault"
+              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+            >
+              <option value="">-- Select EaC key vault --</option>
+              {curCloudLookup &&
+                props.keyVaultOptions[curCloudLookup].map((option) => {
+                  return (
+                    <option value={option.keyVaultLookup}>
+                      {option.keyVaultName}
+                    </option>
+                  );
+                })}
+            </select>
           </div>
         </div>
       </div>
@@ -140,7 +187,7 @@ export function EaCManageDevOpsActionForm(
             type="submit"
             class="w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg"
           >
-            {props.doaLookup ? "Save" : "Create"} EaC DevOps Action
+            {props.secretLookup ? "Save" : "Create"} EaC Secret
           </Action>
         </>
       </ActionGroup>
