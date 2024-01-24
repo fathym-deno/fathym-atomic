@@ -1,12 +1,13 @@
 import { JSX } from "preact";
 import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 import { useEffect, useState } from "preact/hooks";
+import { DataLookup } from "../../utils/DataLookup.ts";
 
 export type EaCManageSecretFormProps = {
-  cloudOptions: { cloudName: string; cloudLookup: string }[];
+  cloudOptions: DataLookup[];
   entLookup: string;
   keyVaultOptions: {
-    [cloudLookup: string]: { keyVaultName: string; keyVaultLookup: string }[];
+    [cloudLookup: string]: DataLookup[];
   };
   secretLookup?: string;
   secretName?: string;
@@ -141,9 +142,7 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
             >
               <option value="">-- Select EaC cloud --</option>
               {props.cloudOptions.map((option) => {
-                return (
-                  <option value={option.cloudLookup}>{option.cloudName}</option>
-                );
+                return <option value={option.Lookup}>{option.Name}</option>;
               })}
             </select>
           </div>
@@ -170,8 +169,8 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               {curCloudLookup &&
                 props.keyVaultOptions[curCloudLookup].map((option) => {
                   return (
-                    <option value={option.keyVaultLookup}>
-                      {option.keyVaultName}
+                    <option value={option.Lookup}>
+                      {option.Name}
                     </option>
                   );
                 })}

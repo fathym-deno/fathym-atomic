@@ -1,3 +1,4 @@
+export * from "./DataLookup.ts";
 export {
   classSet,
   factory,

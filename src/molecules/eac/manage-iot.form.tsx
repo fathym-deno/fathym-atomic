@@ -1,12 +1,13 @@
 import { JSX } from "preact";
 import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 import { useState } from "preact/hooks";
+import { DataLookup } from "../../utils/DataLookup.ts";
 
 export type EaCManageIoTFormProps = {
-  cloudOptions: { cloudName: string; cloudLookup: string }[];
+  cloudOptions: DataLookup[];
   entLookup: string;
   resGroupOptions: {
-    [cloudLookup: string]: { resGroupName: string; resGroupLookup: string }[];
+    [cloudLookup: string]: DataLookup[];
   };
   iotLookup?: string;
   iotName?: string;
@@ -121,9 +122,7 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
             >
               <option value="">-- Select EaC cloud --</option>
               {props.cloudOptions.map((option) => {
-                return (
-                  <option value={option.cloudLookup}>{option.cloudName}</option>
-                );
+                return <option value={option.Lookup}>{option.Name}</option>;
               })}
             </select>
           </div>
@@ -150,8 +149,8 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               {curCloudLookup &&
                 props.resGroupOptions[curCloudLookup].map((option) => {
                   return (
-                    <option value={option.resGroupLookup}>
-                      {option.resGroupName}
+                    <option value={option.Lookup}>
+                      {option.Name}
                     </option>
                   );
                 })}
