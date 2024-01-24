@@ -6,3 +6,4 @@ export * from "./manage-handler.form.tsx";
 export * from "./manage-iot.form.tsx";
 export * from "./manage-iot-device.form.tsx";
 export * from "./manage-secret.form.tsx";
+export * from "./manage-source.form.tsx";
