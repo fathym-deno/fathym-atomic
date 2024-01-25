@@ -80,6 +80,18 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                 type="hidden"
                 value={props.sourceLookup}
               />
+              <Input
+                id="org"
+                name="org"
+                type="hidden"
+                value={props.sourceOrgnaization}
+              />
+              <Input
+                id="repo"
+                name="repo"
+                type="hidden"
+                value={props.sourceRepository}
+              />
             </label>
           )}
 
@@ -194,11 +206,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                 >
                   <option value="">-- Select GitHub organization --</option>
                   {props.organizationOptions.map((option) => {
-                    return (
-                      <option value={option.Lookup}>
-                        {option.Name}
-                      </option>
-                    );
+                    return <option value={option.Lookup}>{option.Name}</option>;
                   })}
                 </select>
               </div>
@@ -225,9 +233,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                   {curOrg &&
                     props.repositoryOptions[curOrg].map((option) => {
                       return (
-                        <option value={option.Lookup}>
-                          {option.Name}
-                        </option>
+                        <option value={option.Lookup}>{option.Name}</option>
                       );
                     })}
                 </select>
