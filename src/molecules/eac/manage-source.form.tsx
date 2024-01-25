@@ -5,10 +5,10 @@ import { DataLookup } from "../../utils/DataLookup.ts";
 
 export type EaCManageSourceFormProps = {
   entLookup: string;
-  organizationOptions: DataLookup[];
-  repositoryOptions: {
-    [cloudLookup: string]: DataLookup[];
-  };
+  organizationOptions: string[];
+  // repositoryOptions: {
+  //   [cloudLookup: string]: string[];
+  // };
   secretOptions: DataLookup[];
   sourceLookup?: string;
   sourceName?: string;
@@ -28,10 +28,10 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
       Lookup: "fork",
       Name: "Fork",
     },
-    {
-      Lookup: "import",
-      Name: "Import",
-    },
+    // {
+    //   Lookup: 'import',
+    //   Name: 'Import',
+    // },
     {
       Lookup: "template",
       Name: "Template",
@@ -61,7 +61,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide font-bold mb-2 text-xl text-center">
-            {props.sourceLookup ? "Edit" : "Create"} EaC Source
+            {props.sourceLookup ? "Manage" : "Create"} EaC Source
           </label>
 
           <Input
@@ -73,7 +73,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
 
           {props.sourceLookup && (
             <label class="block uppercase tracking-wide font-bold mb-2 text-lg text-center">
-              Source {props.sourceOrgnaization}/{props.sourceRepository}
+              Source: {props.sourceOrgnaization}/{props.sourceRepository}
               <Input
                 id="sourceLookup"
                 name="sourceLookup"
@@ -121,7 +121,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
             </div>
           )}
 
-          {curAction !== "configure" && (
+          {curAction && curAction !== "configure" && !props.sourceLookup && (
             <div class="w-full p-3">
               <label
                 for="remote"
@@ -137,12 +137,81 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
               <Input
                 id="remote"
                 name="remote"
-                type="text"
+                type="url"
                 required
                 placeholder="Enter EaC remote repository"
                 class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
               />
             </div>
+          )}
+
+          {!props.sourceLookup && (
+            <>
+              <div class="w-full p-3">
+                <label
+                  for="org"
+                  class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
+                >
+                  Into Organization
+                </label>
+
+                <select
+                  id="org"
+                  name="org"
+                  type="text"
+                  value={curOrg || ""}
+                  required
+                  onChange={organizationChanged}
+                  placeholder="Enter EaC source organization"
+                  class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+                >
+                  <option value="">-- Select GitHub organization --</option>
+                  {props.organizationOptions.map((option) => {
+                    return <option value={option}>{option}</option>;
+                  })}
+                </select>
+              </div>
+
+              {curAction && curAction != "fork" && (
+                <div class="w-full p-3">
+                  <label
+                    for="repo"
+                    class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
+                  >
+                    Repository
+                  </label>
+
+                  {
+                    /* <select
+                    id="repo"
+                    name="repo"
+                    type="text"
+                    value={props.sourceRepository || ''}
+                    disabled={!curOrg}
+                    required
+                    placeholder="Enter EaC source repository"
+                    class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+                  >
+                    <option value="">-- Select GitHub repository --</option>
+                    {curOrg &&
+                      props.repositoryOptions[curOrg].map((option) => {
+                        return <option value={option}>{option}</option>;
+                      })}
+                  </select> */
+                  }
+
+                  <Input
+                    id="repo"
+                    name="repo"
+                    type="text"
+                    value={props.sourceRepository || ""}
+                    required
+                    placeholder="Enter EaC source repository name"
+                    class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+              )}
+            </>
           )}
 
           <div class="w-full p-3">
@@ -183,63 +252,6 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
-
-          {!props.sourceLookup && (
-            <>
-              <div class="w-full p-3">
-                <label
-                  for="org"
-                  class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
-                >
-                  Organization
-                </label>
-
-                <select
-                  id="org"
-                  name="org"
-                  type="text"
-                  value={props.sourceOrgnaization || ""}
-                  required
-                  onChange={organizationChanged}
-                  placeholder="Enter EaC source organization"
-                  class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
-                >
-                  <option value="">-- Select GitHub organization --</option>
-                  {props.organizationOptions.map((option) => {
-                    return <option value={option.Lookup}>{option.Name}</option>;
-                  })}
-                </select>
-              </div>
-
-              <div class="w-full p-3">
-                <label
-                  for="repo"
-                  class="block uppercase tracking-wide font-bold mb-2 text-lg text-left"
-                >
-                  Repository
-                </label>
-
-                <select
-                  id="repo"
-                  name="repo"
-                  type="text"
-                  value={props.sourceRepository || ""}
-                  disabled={!curOrg}
-                  required
-                  placeholder="Enter EaC source repository"
-                  class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
-                >
-                  <option value="">-- Select GitHub repository --</option>
-                  {curOrg &&
-                    props.repositoryOptions[curOrg].map((option) => {
-                      return (
-                        <option value={option.Lookup}>{option.Name}</option>
-                      );
-                    })}
-                </select>
-              </div>
-            </>
-          )}
         </div>
       </div>
 
@@ -249,7 +261,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
             type="submit"
             class="w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg"
           >
-            {props.sourceLookup ? "Save" : "Create"} EaC IoT
+            {props.sourceLookup ? "Save" : "Create"} EaC Source
           </Action>
         </>
       </ActionGroup>

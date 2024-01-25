@@ -6,7 +6,7 @@ export default [
 			"./src/molecules/azure/connect.form.tsx",
 			"./src/molecules/azure/existing.form.tsx",
 			"./src/molecules/eac/calz.form.tsx",
-			"./src/molecules/eac/connect.form.tsx",
+			"./src/molecules/eac/manage-cloud.form.tsx",
 			"./src/molecules/eac/manage-devops-action.form.tsx",
 			"./src/molecules/eac/manage-handler.form.tsx",
 			"./src/molecules/eac/manage-iot-device.form.tsx",

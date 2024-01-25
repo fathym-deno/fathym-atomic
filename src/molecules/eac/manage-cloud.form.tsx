@@ -1,16 +1,21 @@
 import { JSX } from "preact";
-import * as ArmResource from "npm:@azure/arm-subscriptions";
 import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
-export type CloudConnectFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
+export type EaCManageCloudFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
+  cloudApplicationID?: string;
+  cloudAuthKey?: string;
+  cloudDescription?: string;
   cloudLookup?: string;
+  cloudName?: string;
+  cloudSubscriptionID?: string;
+  cloudTenantID?: string;
+  entLookup?: string;
 };
 
-export function CloudConnectForm(props: CloudConnectFormProps) {
+export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
   return (
     <form
       method="post"
-      action="/api/eac/clouds"
       {...props}
       class={classSet(props, "w-full max-w-sm md:max-w-md mx-auto py-3 mt-8")}
     >
@@ -34,6 +39,13 @@ export function CloudConnectForm(props: CloudConnectFormProps) {
           </p>
 
           <Input
+            id="entLookup"
+            name="entLookup"
+            type="hidden"
+            value={props.entLookup}
+          />
+
+          <Input
             id="cloudLookup"
             name="cloudLookup"
             type="hidden"
@@ -52,6 +64,7 @@ export function CloudConnectForm(props: CloudConnectFormProps) {
               id="name"
               name="name"
               type="text"
+              value={props.cloudName || ""}
               required
               placeholder="Enter cloud name"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
@@ -70,6 +83,7 @@ export function CloudConnectForm(props: CloudConnectFormProps) {
               id="description"
               name="description"
               type="text"
+              value={props.cloudDescription || ""}
               multiline
               required
               placeholder="Enter cloud description"
@@ -89,6 +103,7 @@ export function CloudConnectForm(props: CloudConnectFormProps) {
               id="tenant-id"
               name="tenant-id"
               type="text"
+              value={props.cloudTenantID || ""}
               required
               placeholder="Enter tenant ID"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
@@ -107,6 +122,7 @@ export function CloudConnectForm(props: CloudConnectFormProps) {
               id="subscription-id"
               name="subscription-id"
               type="text"
+              value={props.cloudSubscriptionID || ""}
               required
               placeholder="Enter subscription ID"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
@@ -125,6 +141,7 @@ export function CloudConnectForm(props: CloudConnectFormProps) {
               id="application-id"
               name="application-id"
               type="text"
+              value={props.cloudApplicationID || ""}
               required
               placeholder="Enter application ID"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
@@ -143,6 +160,7 @@ export function CloudConnectForm(props: CloudConnectFormProps) {
               id="auth-key"
               name="auth-key"
               type="text"
+              value={props.cloudAuthKey || ""}
               required
               placeholder="Enter application auth key"
               class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
