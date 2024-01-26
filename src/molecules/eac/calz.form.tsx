@@ -16,7 +16,11 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
       method="post"
       action="/api/eac/clouds/resource-groups"
       {...props}
-      class={classSet(props, "w-full max-w-sm md:max-w-md mx-auto p-3 mt-8")}
+      class={classSet(
+        ["w-full max-w-sm md:max-w-md mx-auto p-3 mt-8"],
+        props,
+        "-:",
+      )}
     >
       <div class="flex flex-wrap -mx-3 mb-4 text-left">
         <Input
@@ -82,9 +86,7 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
 
             {props.locations.map((location) => {
               return (
-                <option value={location.name}>
-                  {location.displayName}
-                </option>
+                <option value={location.name}>{location.displayName}</option>
               );
             })}
           </select>

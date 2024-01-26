@@ -19,7 +19,7 @@ export function FathymHeader(props: HeaderProps) {
         </Action>
       }
       {...props}
-      class={classSet(props, "bg-sky-600")}
+      class={classSet(["bg-sky-600"], props, "-:")}
     />
   );
 }

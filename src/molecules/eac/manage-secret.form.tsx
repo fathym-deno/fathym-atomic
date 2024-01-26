@@ -30,7 +30,11 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
     <form
       method="post"
       {...props}
-      class={classSet(props, "w-full max-w-sm md:max-w-md mx-auto py-3 mt-8")}
+      class={classSet(
+        ["w-full max-w-sm md:max-w-md mx-auto py-3 mt-8"],
+        props,
+        "-:",
+      )}
     >
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">
@@ -168,11 +172,7 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               <option value="">-- Select EaC key vault --</option>
               {curCloudLookup &&
                 props.keyVaultOptions[curCloudLookup].map((option) => {
-                  return (
-                    <option value={option.Lookup}>
-                      {option.Name}
-                    </option>
-                  );
+                  return <option value={option.Lookup}>{option.Name}</option>;
                 })}
             </select>
           </div>
