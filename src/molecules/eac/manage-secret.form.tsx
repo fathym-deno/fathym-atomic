@@ -141,7 +141,7 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               required
               onChange={cloudChanged}
               placeholder="Enter EaC secret cloud"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+              class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             >
               <option value="">-- Select EaC cloud --</option>
               {props.cloudOptions.map((option) => {
@@ -166,7 +166,7 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               disabled={!curCloudLookup}
               required
               placeholder="Enter EaC secret key vault"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
+              class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             >
               <option value="">-- Select EaC key vault --</option>
               {curCloudLookup &&
