@@ -7,7 +7,7 @@ export {
   Footer,
   type FooterProps,
   Header,
-  HeaderLogo,
+  type HeaderLogo,
   type HeaderProps,
   Hero,
   type HeroProps,
