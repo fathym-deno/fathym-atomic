@@ -19,7 +19,7 @@ export default [
 		],
 	},
 	{
-		Root: 'https://deno.land/x/fathym_atomic@v0.0.117/',
+		Root: 'https://deno.land/x/fathym_atomic@v0.0.118/',
 		Components: [
 			"./src/atoms/Action.tsx",
 			"./src/atoms/forms/Input.tsx",
@@ -41,7 +41,7 @@ export default [
 		],
 	},
 	{
-		Root: 'https://deno.land/x/fathym_atomic_chat@v0.0.28/',
+		Root: 'https://deno.land/x/fathym_atomic_chat@v0.0.29/',
 		Components: [
 			"./src/molecules/ChatBox.tsx",
 			"./src/molecules/ChatInput.tsx",
@@ -49,13 +49,13 @@ export default [
 		],
 	},
 	{
-		Root: 'https://deno.land/x/fathym_atomic_iot@v0.0.45/',
+		Root: 'https://deno.land/x/fathym_atomic_iot@v0.0.46/',
 		Components: [
 			"./src/molecules/IoTDisplay.tsx",
 		],
 	},
 	{
-		Root: 'https://deno.land/x/fathym_atomic_reports@v0.0.18/',
+		Root: 'https://deno.land/x/fathym_atomic_reports@v0.0.19/',
 		Components: [
 			"./src/molecules/BasicSummary.tsx",
 			"./src/molecules/BulletList.tsx",
@@ -71,7 +71,7 @@ export default [
 		],
 	},
 	{
-		Root: 'https://deno.land/x/fathym_atomic_social@v0.0.52/',
+		Root: 'https://deno.land/x/fathym_atomic_social@v0.0.53/',
 		Components: [
 			"./src/organisms/FeedCard.tsx",
 			"./src/organisms/FeedCardList.tsx",

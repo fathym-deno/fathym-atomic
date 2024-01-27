@@ -17,9 +17,8 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
       action="/api/eac/clouds/resource-groups"
       {...props}
       class={classSet(
-        ["w-full max-w-sm md:max-w-md mx-auto p-3 mt-8"],
+        ["-:w-full -:max-w-sm -:md:max-w-md -:mx-auto -:p-3 -:mt-8"],
         props,
-        "-:",
       )}
     >
       <div class="flex flex-wrap -mx-3 mb-4 text-left">
