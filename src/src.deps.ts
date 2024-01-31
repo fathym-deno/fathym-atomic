@@ -1,4 +1,5 @@
 // export * from "../../../fathym-deno/atomic/mod.ts";
+// import FATC from  "../../../fathym-deno/atomic/tailwind.components.ts";
 // export * from "../../../fathym-deno/atomic-chat/mod.ts";
 // export * from "../../../fathym-deno/atomic-social/mod.ts";
 
