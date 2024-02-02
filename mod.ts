@@ -1,5 +1,17 @@
-export * from "./src/atoms/_exports.ts";
-export * from "./src/molecules/_exports.ts";
-export * from "./src/organisms/_exports.ts";
-export * from "./src/templates/_exports.ts";
-export * from "./src/utils/_exports.ts";
+export * from "./src/_exports.ts";
+
+import { islandsConfig as atomicIslandsConfig } from "@fathym/atomic";
+
+export function islandsConfig() {
+  return [
+    ...atomicIslandsConfig(),
+    {
+      baseLocation: import.meta.url,
+      paths: [
+        "./src/molecules/MenuButton.tsx",
+        "./src/molecules/ResponsiveSet.tsx",
+        "./src/molecules/Tabs.tsx",
+      ],
+    },
+  ];
+}
