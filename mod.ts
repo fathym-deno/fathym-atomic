@@ -7,7 +7,11 @@ export function islandsConfig() {
     ...atomicIslandsConfig(),
     {
       baseLocation: import.meta.url,
-      paths: [],
+      paths: [
+        "./src/molecules/MenuButton.tsx",
+        "./src/molecules/ResponsiveSet.tsx",
+        "./src/molecules/Tabs.tsx",
+      ],
     },
   ];
 }
