@@ -70,7 +70,6 @@ export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
               value={props.cloudName || ""}
               required
               placeholder="Enter cloud name"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -90,7 +89,6 @@ export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
               multiline
               required
               placeholder="Enter cloud description"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -109,7 +107,6 @@ export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
               value={props.cloudTenantID || ""}
               required
               placeholder="Enter tenant ID"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -128,7 +125,6 @@ export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
               value={props.cloudSubscriptionID || ""}
               required
               placeholder="Enter subscription ID"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -147,7 +143,6 @@ export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
               value={props.cloudApplicationID || ""}
               required
               placeholder="Enter application ID"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -166,7 +161,6 @@ export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
               value={props.cloudAuthKey || ""}
               required
               placeholder="Enter application auth key"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>

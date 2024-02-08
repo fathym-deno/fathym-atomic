@@ -50,7 +50,6 @@ export function EaCManageDevOpsActionForm(
               value={props.doaLookup || ""}
               required
               placeholder="Enter EaC devops action lookup"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -69,7 +68,6 @@ export function EaCManageDevOpsActionForm(
               value={props.doaName || ""}
               required
               placeholder="Enter EaC devops action name"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -89,7 +87,6 @@ export function EaCManageDevOpsActionForm(
               multiline
               required
               placeholder="Enter EaC devops action description"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -110,7 +107,6 @@ export function EaCManageDevOpsActionForm(
               value={props.doaPath || ""}
               required
               placeholder="Enter EaC devops action path"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -131,7 +127,6 @@ export function EaCManageDevOpsActionForm(
               multiline
               required
               placeholder="Enter EaC devops action template paths"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>

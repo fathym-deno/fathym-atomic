@@ -1,6 +1,12 @@
 import { JSX } from "preact";
 import { Location } from "npm:@azure/arm-subscriptions";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  Select,
+} from "../../src.deps.ts";
 
 export type CloudCALZFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
   cloudLookup: string;
@@ -44,7 +50,6 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
             required
             disabled={!!props.resGroupLookup}
             placeholder="Enter new resource group lookup"
-            class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
           />
         </div>
 
@@ -63,7 +68,6 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
             required
             multiline
             placeholder="Enter new resource group description"
-            class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
           />
         </div>
 
@@ -75,11 +79,10 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
             Location
           </label>
 
-          <select
+          <Select
             id="location"
             name="location"
             required
-            class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:shadow-lg focus:border-blue-500 placeholder-gray-500"
           >
             <option value="">-- Select a location --</option>
 
@@ -88,7 +91,7 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
                 <option value={location.name}>{location.displayName}</option>
               );
             })}
-          </select>
+          </Select>
         </div>
       </div>
 

@@ -51,7 +51,6 @@ export function EaCManageForm(props: EaCManageFormProps) {
               value={props.entName || ""}
               required
               placeholder="Enter enterprise name"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -71,7 +70,6 @@ export function EaCManageForm(props: EaCManageFormProps) {
               multiline
               required
               placeholder="Enter enterprise description"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>

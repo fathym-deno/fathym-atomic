@@ -1,5 +1,11 @@
 import { JSX } from "preact";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  Select,
+} from "../../src.deps.ts";
 import { useEffect, useState } from "preact/hooks";
 import { DataLookup } from "../../utils/DataLookup.ts";
 
@@ -63,7 +69,6 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               value={props.secretLookup || ""}
               required
               placeholder="Enter EaC secret lookup"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -82,7 +87,6 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               value={props.secretName || ""}
               required
               placeholder="Enter EaC secret name"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -102,7 +106,6 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               multiline
               required
               placeholder="Enter EaC secret description"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -121,7 +124,6 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               value={props.secretValue || ""}
               multiline
               placeholder="Enter EaC secret value"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -133,7 +135,7 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               Cloud
             </label>
 
-            <select
+            <Select
               id="cloudLookup"
               name="cloudLookup"
               type="text"
@@ -141,13 +143,12 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               required
               onChange={cloudChanged}
               placeholder="Enter EaC secret cloud"
-              class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             >
               <option value="">-- Select EaC cloud --</option>
               {props.cloudOptions.map((option) => {
                 return <option value={option.Lookup}>{option.Name}</option>;
               })}
-            </select>
+            </Select>
           </div>
 
           <div class="w-full p-3">
@@ -158,7 +159,7 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               Key Vault
             </label>
 
-            <select
+            <Select
               id="keyVaultLookup"
               name="keyVaultLookup"
               type="text"
@@ -166,14 +167,13 @@ export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
               disabled={!curCloudLookup}
               required
               placeholder="Enter EaC secret key vault"
-              class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             >
               <option value="">-- Select EaC key vault --</option>
               {curCloudLookup &&
                 props.keyVaultOptions[curCloudLookup].map((option) => {
                   return <option value={option.Lookup}>{option.Name}</option>;
                 })}
-            </select>
+            </Select>
           </div>
         </div>
       </div>

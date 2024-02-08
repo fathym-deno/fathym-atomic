@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import { Subscription } from "npm:@azure/arm-subscriptions";
-import { Action, ActionGroup, classSet } from "../../src.deps.ts";
+import { Action, ActionGroup, classSet, Select } from "../../src.deps.ts";
 
 export type CloudConnectExistingFormProps = {
   actionText?: string;
@@ -32,11 +32,10 @@ export function CloudConnectExistingForm(props: CloudConnectExistingFormProps) {
             {title}
           </label>
 
-          <select
+          <Select
             id="subscription-id"
             name="subscription-id"
             required
-            class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:shadow-lg focus:border-blue-500 placeholder-gray-500"
           >
             <option value="">-- Select an existing subscription --</option>
 
@@ -45,7 +44,7 @@ export function CloudConnectExistingForm(props: CloudConnectExistingFormProps) {
                 <option value={sub.subscriptionId}>{sub.displayName}</option>
               );
             })}
-          </select>
+          </Select>
         </div>
       </div>
 

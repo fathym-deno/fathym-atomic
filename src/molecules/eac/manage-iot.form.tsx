@@ -1,5 +1,11 @@
 import { JSX } from "preact";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  Select,
+} from "../../src.deps.ts";
 import { useState } from "preact/hooks";
 import { DataLookup } from "../../utils/DataLookup.ts";
 
@@ -62,7 +68,6 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               value={props.iotLookup || ""}
               required
               placeholder="Enter EaC IoT lookup"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -81,7 +86,6 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               value={props.iotName || ""}
               required
               placeholder="Enter EaC iot name"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -101,7 +105,6 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               multiline
               required
               placeholder="Enter EaC iot description"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -113,7 +116,7 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               Cloud
             </label>
 
-            <select
+            <Select
               id="cloudLookup"
               name="cloudLookup"
               type="text"
@@ -121,13 +124,12 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               required
               onChange={cloudChanged}
               placeholder="Enter EaC IoT cloud"
-              class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             >
               <option value="">-- Select EaC cloud --</option>
               {props.cloudOptions.map((option) => {
                 return <option value={option.Lookup}>{option.Name}</option>;
               })}
-            </select>
+            </Select>
           </div>
 
           <div class="w-full p-3">
@@ -138,7 +140,7 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               Resource Group
             </label>
 
-            <select
+            <Select
               id="resGroupLookup"
               name="resGroupLookup"
               type="text"
@@ -146,14 +148,13 @@ export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
               disabled={!curCloudLookup}
               required
               placeholder="Enter EaC IoT resource group"
-              class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             >
               <option value="">-- Select EaC resource group --</option>
               {curCloudLookup &&
                 props.resGroupOptions[curCloudLookup].map((option) => {
                   return <option value={option.Lookup}>{option.Name}</option>;
                 })}
-            </select>
+            </Select>
           </div>
         </div>
       </div>

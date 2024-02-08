@@ -1,6 +1,12 @@
 import { JSX } from "preact";
 import { useState } from "preact/hooks";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  Select,
+} from "../../src.deps.ts";
 import { DataLookup } from "../../utils/DataLookup.ts";
 
 export type EaCManageSourceFormProps = {
@@ -107,20 +113,19 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                 Source Action
               </label>
 
-              <select
+              <Select
                 id="action"
                 name="action"
                 type="text"
                 required
                 onChange={actionChanged}
                 placeholder="Enter EaC IoT cloud"
-                class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
               >
                 <option value="">-- Select Source action --</option>
                 {actionOptions.map((option) => {
                   return <option value={option.Lookup}>{option.Name}</option>;
                 })}
-              </select>
+              </Select>
             </div>
           )}
 
@@ -143,7 +148,6 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                 type="url"
                 required
                 placeholder="Enter EaC remote repository"
-                class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
               />
             </div>
           )}
@@ -158,7 +162,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                   Into Organization
                 </label>
 
-                <select
+                <Select
                   id="org"
                   name="org"
                   type="text"
@@ -166,13 +170,12 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                   required
                   onChange={organizationChanged}
                   placeholder="Enter EaC source organization"
-                  class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
                 >
                   <option value="">-- Select GitHub organization --</option>
                   {props.organizationOptions.map((option) => {
                     return <option value={option}>{option}</option>;
                   })}
-                </select>
+                </Select>
               </div>
 
               {curAction && curAction != "fork" && (
@@ -185,7 +188,7 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                   </label>
 
                   {
-                    /* <select
+                    /* <Select
                     id="repo"
                     name="repo"
                     type="text"
@@ -193,14 +196,13 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                     disabled={!curOrg}
                     required
                     placeholder="Enter EaC source repository"
-                    class="appearance-none block w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
                   >
                     <option value="">-- Select GitHub repository --</option>
                     {curOrg &&
                       props.repositoryOptions[curOrg].map((option) => {
                         return <option value={option}>{option}</option>;
                       })}
-                  </select> */
+                  </Select> */
                   }
 
                   <Input
@@ -210,7 +212,6 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
                     value={props.sourceRepository || ""}
                     required
                     placeholder="Enter EaC source repository name"
-                    class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
                   />
                 </div>
               )}
@@ -232,7 +233,6 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
               value={props.sourceName || ""}
               required
               placeholder="Enter EaC source name"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -252,7 +252,6 @@ export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
               multiline
               required
               placeholder="Enter EaC source description"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>

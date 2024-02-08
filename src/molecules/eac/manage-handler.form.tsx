@@ -46,7 +46,6 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
               value={props.handlerLookup || ""}
               required
               placeholder="Enter EaC handler lookup"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -65,7 +64,6 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
               value={props.handlerApiPath || ""}
               required
               placeholder="Enter EaC handler API Path"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -84,7 +82,6 @@ export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
               value={props.handlerOrder || 100}
               required
               placeholder="Enter EaC handler order"
-              class="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
