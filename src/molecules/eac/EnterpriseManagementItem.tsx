@@ -96,7 +96,7 @@ export default function EnterpriseManagementItem(
               <Action actionStyle={ActionStyleTypes.Link}>
                 <Icon
                   class="w-6 h-6 text-sky-500"
-                  src={props.icons?.IconSet || "./iconset/icons"}
+                  src={props.icons?.IconSet || "/icons/iconset"}
                   icon={props.icons?.BeginIcon || "begin"}
                 />
               </Action>
@@ -107,7 +107,7 @@ export default function EnterpriseManagementItem(
             <Action type="submit" actionStyle={ActionStyleTypes.Link}>
               <Icon
                 class="w-6 h-6 text-red-500"
-                src={props.icons?.IconSet || "./iconset/icons"}
+                src={props.icons?.IconSet || "/icons/iconset"}
                 icon={props.icons?.DeleteIcon || "delete"}
               />
             </Action>
