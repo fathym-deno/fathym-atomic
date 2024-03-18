@@ -4,6 +4,7 @@
     "build:fmt": "deno fmt",
     "build:lint": "deno lint",
     "build:tailwind": "deno run -A tailwind-components.config.ts",
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "deploy": "deno task build && ftm git",
     "dev-config": "deno task dev-tailwind",
     "dev-tailwind": "echo '// deno-lint-ignore no-empty\n{}' > tailwind.config.js",
@@ -14,16 +15,12 @@
   "imports": {
     "$dnt": "https://deno.land/x/dnt/mod.ts",
     "preact": "https://esm.sh/preact@10.19.2",
-    "preact/": "https://esm.sh/preact@10.19.2/",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.3.1",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
-    "$std/": "https://deno.land/std@0.211.0/"
+    "preact/": "https://esm.sh/preact@10.19.2/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
-  "lock": false,
   "fmt": {
     "include": ["./**/*.ts", "./**/*.tsx"],
     "exclude": [],
@@ -36,5 +33,6 @@
       "include": [],
       "exclude": []
     }
-  }
+  },
+  "unstable": ["kv"]
 }
