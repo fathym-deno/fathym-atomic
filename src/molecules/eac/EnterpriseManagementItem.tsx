@@ -1,11 +1,17 @@
+import { JSX } from "preact";
+// import {
+//   // Action,
+//   // ActionGroup,
+//   // ActionStyleTypes,
+//   // Icon,
+//   // Input,
+//   // JSX,
+// } from "../../src.deps.ts";
 import {
   Action,
   ActionGroup,
-  ActionStyleTypes,
-  Icon,
-  Input,
-  JSX,
-} from "../../src.deps.ts";
+} from "https://deno.land/x/fathym_atomic@v0.0.133/mod.ts";
+import { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.23/browser.ts";
 
 export const IsIsland = true;
 
