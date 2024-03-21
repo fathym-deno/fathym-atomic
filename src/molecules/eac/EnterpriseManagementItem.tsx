@@ -2,12 +2,9 @@ import {
   Action,
   ActionGroup,
   ActionStyleTypes,
-  EaCStatus,
-  EaCStatusProcessingTypes,
   Icon,
   Input,
   JSX,
-  UserEaCRecord,
 } from "../../src.deps.ts";
 
 export const IsIsland = true;
@@ -15,7 +12,11 @@ export const IsIsland = true;
 export type EnterpriseManagementItemProps = {
   active: boolean;
 
-  enterprise: UserEaCRecord;
+  enterprise: {
+    EnterpriseLookup: string;
+
+    EnterpriseName: string;
+  };
 
   icons?: {
     BeginIcon?: string;
@@ -44,14 +45,21 @@ export default function EnterpriseManagementItem(
           EnterpriseLookup: props.enterprise.EnterpriseLookup,
         }),
       }).then((response) => {
-        response.json().then((status: EaCStatus) => {
-          if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
-            location.reload();
-          } else {
-            console.log(status);
-            alert(status.Messages["Error"]);
-          }
-        });
+        response
+          .json()
+          .then(
+            (status: {
+              Processing: number;
+              Messages: Record<string, unknown>;
+            }) => {
+              if (status.Processing === 3) {
+                location.reload();
+              } else {
+                console.log(status);
+                alert(status.Messages["Error"]);
+              }
+            },
+          );
       });
     }
   };
@@ -73,8 +81,11 @@ export default function EnterpriseManagementItem(
           EnterpriseLookup: props.enterprise.EnterpriseLookup,
         }),
       }).then((response) => {
-        response.json().then((status: EaCStatus) => {
-          if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
+        response.json().then((status: {
+          Processing: number;
+          Messages: Record<string, unknown>;
+        }) => {
+          if (status.Processing === 3) {
             location.reload();
           } else {
             console.log(status);
