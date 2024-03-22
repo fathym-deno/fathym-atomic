@@ -88,17 +88,21 @@ export default function EnterpriseManagementItem(
           EnterpriseLookup: props.enterprise.EnterpriseLookup,
         }),
       }).then((response) => {
-        response.json().then((status: {
-          Processing: number;
-          Messages: Record<string, unknown>;
-        }) => {
-          if (status.Processing === 3) {
-            location.reload();
-          } else {
-            console.log(status);
-            alert(status.Messages["Error"]);
-          }
-        });
+        response
+          .json()
+          .then(
+            (status: {
+              Processing: number;
+              Messages: Record<string, unknown>;
+            }) => {
+              if (status.Processing === 3) {
+                location.reload();
+              } else {
+                console.log(status);
+                alert(status.Messages["Error"]);
+              }
+            },
+          );
       });
     }
   };
