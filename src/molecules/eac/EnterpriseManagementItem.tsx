@@ -12,7 +12,7 @@ import {
   ActionGroup,
   ActionStyleTypes,
 } from "https://deno.land/x/fathym_atomic@v0.0.133/mod.ts";
-import { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.23/browser.ts";
+// import { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.23/browser.ts";
 
 export const IsIsland = true;
 
@@ -116,22 +116,26 @@ export default function EnterpriseManagementItem(
           {!props.active && (
             <form onSubmit={(e) => setActiveEnterprise(e)}>
               <Action actionStyle={ActionStyleTypes.Link}>
-                <Icon
+                {
+                  /* <Icon
                   class="w-6 h-6 text-sky-500"
                   src={props.icons?.IconSet || "/icons/iconset"}
                   icon={props.icons?.BeginIcon || "begin"}
-                />
+                /> */
+                }
               </Action>
             </form>
           )}
 
           <form onSubmit={(e) => deleteEnterprise(e)}>
             <Action type="submit" actionStyle={ActionStyleTypes.Link}>
-              <Icon
+              {
+                /* <Icon
                 class="w-6 h-6 text-red-500"
                 src={props.icons?.IconSet || "/icons/iconset"}
                 icon={props.icons?.DeleteIcon || "delete"}
-              />
+              /> */
+              }
             </Action>
           </form>
         </>
