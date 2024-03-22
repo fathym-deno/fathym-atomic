@@ -7,12 +7,12 @@ import { JSX } from "preact";
 //   // Input,
 //   // JSX,
 // } from "../../src.deps.ts";
-// import {
-//   Action,
-//   ActionGroup,
-//   ActionStyleTypes,
-// } from "https://deno.land/x/fathym_atomic@v0.0.133/mod.ts";
-// import { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.23/browser.ts";
+import {
+  Action,
+  ActionGroup,
+  ActionStyleTypes,
+} from "https://deno.land/x/fathym_atomic@v0.0.137/mod.ts";
+import { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.30/browser.ts";
 
 export const IsIsland = true;
 
@@ -107,8 +107,7 @@ export default function EnterpriseManagementItem(
     <div class="flex flex-row justify-center items-center hover:bg-slate-300 hover:opactity-80">
       <h1 class="flex-1 text-lg ml-1">{props.enterprise.EnterpriseName}</h1>
 
-      {
-        /* <ActionGroup class="flex-none">
+      <ActionGroup class="flex-none">
         <>
           {!props.active && (
             <form onSubmit={(e) => setActiveEnterprise(e)}>
@@ -132,8 +131,7 @@ export default function EnterpriseManagementItem(
             </Action>
           </form>
         </>
-      </ActionGroup> */
-      }
+      </ActionGroup>
     </div>
   );
 }
