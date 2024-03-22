@@ -7,7 +7,7 @@ export { type JSX } from "https://esm.sh/preact@10.19.2";
 
 export * from "https://deno.land/x/fathym_common@v0.0.176/mod.ts";
 // export { Icon } from "../../atomic-icons/browser.ts";
-// export { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.25/browser.ts";
+export { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.25/browser.ts";
 
 export * from "https://deno.land/x/fathym_atomic@v0.0.135/mod.ts";
 export * from "https://deno.land/x/fathym_atomic_chat@v0.0.33/mod.ts";
