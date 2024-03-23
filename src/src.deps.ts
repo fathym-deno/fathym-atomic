@@ -16,3 +16,5 @@ export * from "https://deno.land/x/fathym_atomic_chat@v0.0.35/mod.ts";
 export * from "https://deno.land/x/fathym_atomic_iot@v0.0.52/mod.ts";
 // export * from "https://deno.land/x/fathym_atomic_reports@v0.0.24/mod.ts";
 export * from "https://deno.land/x/fathym_atomic_social@v0.0.57/mod.ts";
+
+export const IS_BROWSER = typeof document !== "undefined";
