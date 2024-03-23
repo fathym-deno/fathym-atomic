@@ -8,6 +8,8 @@ import {
   useState,
 } from "../src.deps.ts";
 
+export const IsIsland = true;
+
 export type CopyInputProps = {
   icons?: {
     CheckIcon?: string;
