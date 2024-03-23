@@ -19,6 +19,8 @@ export const IsIsland = true;
 export type EnterpriseManagementItemProps = {
   active: boolean;
 
+  deleteActionPath?: string;
+
   enterprise: {
     EnterpriseLookup: string;
 
@@ -32,6 +34,8 @@ export type EnterpriseManagementItemProps = {
 
     IconSet?: string;
   };
+
+  setActiveActionPath?: string;
 };
 
 export default function EnterpriseManagementItem(
@@ -46,7 +50,7 @@ export default function EnterpriseManagementItem(
       )
     ) {
       // deleteFormRef.
-      fetch("", {
+      fetch(props.deleteActionPath ?? "", {
         method: "DELETE",
         body: JSON.stringify({
           EnterpriseLookup: props.enterprise.EnterpriseLookup,
@@ -81,8 +85,7 @@ export default function EnterpriseManagementItem(
         `Are you sure you want to set ${props.enterprise.EnterpriseName} as active?`,
       )
     ) {
-      // deleteFormRef.
-      fetch("", {
+      fetch(props.setActiveActionPath ?? "", {
         method: "PUT",
         body: JSON.stringify({
           EnterpriseLookup: props.enterprise.EnterpriseLookup,
