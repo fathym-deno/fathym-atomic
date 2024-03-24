@@ -3,9 +3,9 @@
 // export * from "../../../fathym-deno/atomic-chat/mod.ts";
 // export * from "../../../fathym-deno/atomic-social/mod.ts";
 
-export { type JSX } from "https://esm.sh/preact@10.19.2";
+export { type JSX } from "https://esm.sh/preact@10.20.1";
 
-export * from "https://esm.sh/preact@10.19.2/hooks";
+export * from "https://esm.sh/preact@10.20.1/hooks";
 
 export * from "https://deno.land/x/fathym_common@v0.0.177/mod.ts";
 // export { Icon } from "../../atomic-icons/browser.ts";

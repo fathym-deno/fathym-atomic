@@ -23,7 +23,7 @@ export type CopyInputProps = {
 
 export default function CopyInput(props: CopyInputProps) {
   // deno-lint-ignore no-explicit-any
-  const copyRef = {} as any; //IS_BROWSER ? useRef<HTMLInputElement>(null) : {} as any;
+  const copyRef = IS_BROWSER ? useRef<HTMLInputElement>(null) : {} as any;
 
   const [success, setSuccess] = IS_BROWSER
     ? useState(false)
