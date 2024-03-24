@@ -1,6 +1,8 @@
 export * from "./azure/_exports.ts";
 export * from "./eac/_exports.ts";
-export * from "./CopyInput.tsx";
+
+import CopyInput from "./CopyInput.tsx";
+export { CopyInput };
 
 export {
   ActionGroup,
