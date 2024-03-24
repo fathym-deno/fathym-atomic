@@ -8,5 +8,5 @@ export * from "./manage-iot-device.form.tsx";
 export * from "./manage-secret.form.tsx";
 export * from "./manage-source.form.tsx";
 
-import EnterpriseManagementItem from "./EnterpriseManagementItem.tsx";
-export { EnterpriseManagementItem };
+import EMI from "./EnterpriseManagementItem.tsx";
+export const EnterpriseManagementItem = EMI;
