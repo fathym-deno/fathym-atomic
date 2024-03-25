@@ -22,12 +22,9 @@ export type CopyInputProps = {
 } & InputProps;
 
 export default function CopyInput(props: CopyInputProps) {
-  // deno-lint-ignore no-explicit-any
-  const copyRef = IS_BROWSER ? useRef<HTMLInputElement>(null) : {} as any;
+  const copyRef = useRef<HTMLInputElement>(null);
 
-  const [success, setSuccess] = IS_BROWSER
-    ? useState(false)
-    : [false, (s: boolean) => {}];
+  const [success, setSuccess] = useState(false);
 
   const copyToClipboard = (e: JSX.TargetedMouseEvent<HTMLButtonElement>) => {
     setSuccess(true);
