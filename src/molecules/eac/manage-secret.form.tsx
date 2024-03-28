@@ -9,6 +9,8 @@ import {
 import { useEffect, useState } from "preact/hooks";
 import { DataLookup } from "../../utils/DataLookup.ts";
 
+export const IsIsland = true;
+
 export type EaCManageSecretFormProps = {
   cloudOptions: DataLookup[];
   entLookup: string;
@@ -23,7 +25,7 @@ export type EaCManageSecretFormProps = {
   secretKeyVaultLookup?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageSecretForm(props: EaCManageSecretFormProps) {
+export default function EaCManageSecretForm(props: EaCManageSecretFormProps) {
   const [curCloudLookup, setCurCloudLookup] = useState(
     props.secretCloudLookup || "",
   );

@@ -9,6 +9,8 @@ import {
 } from "../../src.deps.ts";
 import { DataLookup } from "../../utils/DataLookup.ts";
 
+export const IsIsland = true;
+
 export type EaCManageSourceFormProps = {
   entLookup: string;
   organizationOptions: string[];
@@ -24,7 +26,7 @@ export type EaCManageSourceFormProps = {
   sourceSecrets?: DataLookup[];
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageSourceForm(props: EaCManageSourceFormProps) {
+export default function EaCManageSourceForm(props: EaCManageSourceFormProps) {
   const actionOptions: DataLookup[] = [
     {
       Lookup: "configure",

@@ -9,6 +9,8 @@ import {
 import { useState } from "preact/hooks";
 import { DataLookup } from "../../utils/DataLookup.ts";
 
+export const IsIsland = true;
+
 export type EaCManageIoTFormProps = {
   cloudOptions: DataLookup[];
   entLookup: string;
@@ -22,7 +24,7 @@ export type EaCManageIoTFormProps = {
   iotResGroupLookup?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageIoTForm(props: EaCManageIoTFormProps) {
+export default function EaCManageIoTForm(props: EaCManageIoTFormProps) {
   const [curCloudLookup, setCurCloudLookup] = useState(
     props.iotCloudLookup || "",
   );
