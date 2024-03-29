@@ -32,8 +32,12 @@ export type EnterpriseManagementItemProps = {
 
     DeleteIcon?: string;
 
+    EditIcon?: string;
+
     IconSet?: string;
   };
+
+  manage: boolean;
 
   setActiveActionPath?: string;
 };
@@ -116,6 +120,21 @@ export default function EnterpriseManagementItem(
 
       <ActionGroup class="flex-none">
         <>
+          {!props.manage && (
+            <Action
+              actionStyle={ActionStyleTypes.Link |
+                ActionStyleTypes.Rounded |
+                ActionStyleTypes.Icon}
+              href={`/enterprises/${props.enterprise.EnterpriseLookup}`}
+            >
+              <Icon
+                class="w-6 h-6 text-blue-500"
+                src={props.icons?.IconSet || "/icons/iconset"}
+                icon={props.icons?.EditIcon || "edit"}
+              />
+            </Action>
+          )}
+
           {!props.active && (
             <form onSubmit={(e) => setActiveEnterprise(e)}>
               <Action actionStyle={ActionStyleTypes.Link}>
