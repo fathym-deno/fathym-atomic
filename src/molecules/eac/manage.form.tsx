@@ -3,8 +3,12 @@ import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
 
 export type EaCManageFormProps = {
   entLookup?: string;
+
   entName?: string;
+
   entDescription?: string;
+
+  hideTitle?: boolean;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
 export function EaCManageForm(props: EaCManageFormProps) {
@@ -20,12 +24,14 @@ export function EaCManageForm(props: EaCManageFormProps) {
     >
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">
-          <label
-            for="subscription-plan"
-            class="block uppercase tracking-wide font-bold mb-2 text-xl text-center"
-          >
-            {props.entLookup ? "Edit" : "Create"} Enterprise
-          </label>
+          {!props.hideTitle && (
+            <label
+              for="subscription-plan"
+              class="block uppercase tracking-wide font-bold mb-2 text-xl text-center"
+            >
+              {props.entLookup ? "Edit" : "Create"} Enterprise
+            </label>
+          )}
 
           {props.entLookup && (
             <Input
