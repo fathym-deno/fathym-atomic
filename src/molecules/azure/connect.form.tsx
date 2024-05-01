@@ -9,6 +9,8 @@ export type CloudConnectAzureFormProps = {
   title?: string;
 } & Omit<JSX.HTMLAttributes<HTMLFormElement>, "title">;
 
+export const IsIsland = true;
+
 export function CloudConnectAzureForm(props: CloudConnectAzureFormProps) {
   const title = props.title || "Connect to Azure";
 
@@ -16,6 +18,8 @@ export function CloudConnectAzureForm(props: CloudConnectAzureFormProps) {
     "To get started in the cloud, please connect your Azure account.";
 
   const actionText = props.actionText || "Connect Now";
+
+  const success = location?.pathname || "/";
 
   return (
     <form
@@ -26,6 +30,13 @@ export function CloudConnectAzureForm(props: CloudConnectAzureFormProps) {
         props,
       )}
     >
+      <input
+        type="hidden"
+        id="success_url"
+        name="success_url"
+        value={success}
+      />
+
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide font-bold mb-2 text-xl">
