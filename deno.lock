@@ -27,6 +27,7 @@
     "https://esm.sh/v135/@types/katex@~0.16/index.d.ts": "https://esm.sh/v135/@types/katex@0.16.7/index.d.ts",
     "https://esm.sh/v135/@types/marked@^5/index.d.ts": "https://esm.sh/v135/@types/marked@5.0.2/index.d.ts",
     "https://esm.sh/v135/@types/prismjs@^1/index.d.ts": "https://esm.sh/v135/@types/prismjs@1.26.3/index.d.ts",
+    "https://esm.sh/v135/@types/prismjs@~1/index.d.ts": "https://esm.sh/v135/@types/prismjs@1.26.3/index.d.ts",
     "https://esm.sh/v135/@types/sanitize-html@~2.8/index.d.ts": "https://esm.sh/v135/@types/sanitize-html@2.8.1/index.d.ts"
   },
   "remote": {}

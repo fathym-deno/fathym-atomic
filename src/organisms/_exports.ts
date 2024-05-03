@@ -1,3 +1,6 @@
+export * from "./azure/_exports.ts";
+export * from "./feed/_exports.ts";
+
 export {
   ChatHistory,
   type ChatHistoryMessage,
@@ -26,10 +29,5 @@ export { PostForm, type PostFormProps } from "../src.deps.ts";
 export { PostWithFeed, type PostWithFeedProps } from "../src.deps.ts";
 
 export { ProfileDisplay, type ProfileDisplayProps } from "../src.deps.ts";
-
-export {
-  BuildFeedCard,
-  type BuildFeedCardProps,
-} from "./feed/BuildFeedCard.tsx";
 
 export { FathymHeader } from "./FathymHeader.tsx";

@@ -5,7 +5,7 @@ import { Action, ActionGroup, classSet, Select } from "../../src.deps.ts";
 export type CloudConnectExistingFormProps = {
   actionText?: string;
 
-  subs: Subscription[];
+  subs: Record<string, string>;
 
   title?: string;
 } & Omit<JSX.HTMLAttributes<HTMLFormElement>, "title">;
@@ -17,6 +17,7 @@ export function CloudConnectExistingForm(props: CloudConnectExistingFormProps) {
 
   return (
     <form
+      method="post"
       {...props}
       class={classSet(
         ["-:w-full -:max-w-sm -:md:max-w-md -:mx-auto -:py-3 -:mt-8"],
@@ -32,17 +33,13 @@ export function CloudConnectExistingForm(props: CloudConnectExistingFormProps) {
             {title}
           </label>
 
-          <Select
-            id="subscription-id"
-            name="subscription-id"
-            required
-          >
+          <Select id="subscription-id" name="subscription-id" required>
             <option value="">-- Select an existing subscription --</option>
 
-            {props.subs.map((sub) => {
-              return (
-                <option value={sub.subscriptionId}>{sub.displayName}</option>
-              );
+            {Object.keys(props.subs).map((id) => {
+              const name = props.subs[id];
+
+              return <option value={id}>{name}</option>;
             })}
           </Select>
         </div>
