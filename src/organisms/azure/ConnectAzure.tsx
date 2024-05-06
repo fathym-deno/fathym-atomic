@@ -1,4 +1,5 @@
 import CloudConnectAzureForm from "../../molecules/azure/CloudConnectAzureForm.tsx";
+import { classSet, JSX } from "../../src.deps.ts";
 import CloudConnectSub from "./CloudConnectSub.tsx";
 
 export type ConnectAzureProps = {
@@ -15,11 +16,16 @@ export type ConnectAzureProps = {
   subs: Record<string, string>;
 
   tenants: Record<string, string>;
-};
+} & JSX.HTMLAttributes<HTMLDivElement>;
 
 export default function ConnectAzure(props: ConnectAzureProps) {
   return (
-    <div class="flex flex-col justify-center w-full max-w-sm">
+    <div
+      class={classSet(
+        ["-:flex -:flex-col -:justify-center -:w-full -:max-w-sm"],
+        props,
+      )}
+    >
       {!props.isConnected
         ? (
           <CloudConnectAzureForm
