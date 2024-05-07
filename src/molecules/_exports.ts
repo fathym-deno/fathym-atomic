@@ -11,6 +11,8 @@ export {
   type ChatBoxProps,
   ChatInput,
   type ChatInputProps,
+  ClickOnceAction,
+  type ClickOnceActionProps,
   Display,
   type DisplayProps,
   DisplayStyleTypes,
