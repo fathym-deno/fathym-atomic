@@ -1,18 +1,6 @@
-import {
-  Action,
-  ActionGroup,
-  ActionStyleTypes,
-  Tab,
-  Tabs,
-  useState,
-} from "../../src.deps.ts";
-import {
-  Subscription,
-  TenantIdDescription,
-} from "npm:@azure/arm-subscriptions";
+import { Tab, Tabs, useState } from "../../src.deps.ts";
 import CloudConnectNewSubForm from "../../molecules/azure/CloudConnectNewSubForm.tsx";
 import { CloudConnectExistingForm } from "../../molecules/azure/CloudConnectExistingForm.tsx";
-import { PropertyComparer } from "https://deno.land/x/ts_morph@18.0.0/common/ts_morph_common.js";
 import { EaCManageCloudForm } from "../../molecules/eac/manage-cloud.form.tsx";
 
 export const IsIsland = true;
@@ -38,7 +26,7 @@ export default function CloudConnectSub(props: CloudConnectSubProps) {
     initState as "existing" | "new" | "direct",
   );
 
-  const switchTo = (display: typeof currentDisplay) => {
+  const _switchTo = (display: typeof currentDisplay) => {
     setUseExisting(display);
   };
 

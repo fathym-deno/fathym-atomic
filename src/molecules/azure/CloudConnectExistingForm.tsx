@@ -1,5 +1,4 @@
 import { JSX } from "preact";
-import { Subscription } from "npm:@azure/arm-subscriptions";
 import { Action, ActionGroup, classSet, Select } from "../../src.deps.ts";
 
 export type CloudConnectExistingFormProps = {

@@ -1,11 +1,5 @@
 import { Logo } from "../atoms/Logo.tsx";
-import {
-  Action,
-  ActionStyleTypes,
-  classSet,
-  Header,
-  HeaderProps,
-} from "../src.deps.ts";
+import { Action, ActionStyleTypes, Header, HeaderProps } from "../src.deps.ts";
 
 export function FathymHeader(props: HeaderProps) {
   return (

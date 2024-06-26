@@ -6,7 +6,7 @@ import {
   Input,
   Select,
 } from "../../src.deps.ts";
-import { useEffect, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { DataLookup } from "../../utils/DataLookup.ts";
 
 export const IsIsland = true;
