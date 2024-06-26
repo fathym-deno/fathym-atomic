@@ -3,7 +3,6 @@ import {
   Icon,
   Input,
   InputProps,
-  IS_BROWSER,
   JSX,
   useRef,
   useState,
@@ -26,7 +25,7 @@ export default function CopyInput(props: CopyInputProps) {
 
   const [success, setSuccess] = useState(false);
 
-  const copyToClipboard = (e: JSX.TargetedMouseEvent<HTMLButtonElement>) => {
+  const copyToClipboard = (_e: JSX.TargetedMouseEvent<HTMLButtonElement>) => {
     setSuccess(true);
 
     navigator.clipboard.writeText(props.value!.toString());

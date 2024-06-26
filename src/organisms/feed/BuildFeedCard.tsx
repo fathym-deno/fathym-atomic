@@ -1,4 +1,4 @@
-import { ComponentChildren, JSX } from "preact";
+import { JSX } from "preact";
 import { FeedCard, FeedCardProps } from "../../src.deps.ts";
 
 export interface BuildFeedCardProps extends Omit<FeedCardProps, "subtitle"> {

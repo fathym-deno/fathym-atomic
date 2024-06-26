@@ -3,7 +3,6 @@ import {
   ActionGroup,
   ActionStyleTypes,
   Icon,
-  Input,
   JSX,
 } from "../../src.deps.ts";
 // import { JSX } from "preact";
