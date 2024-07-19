@@ -5,6 +5,9 @@ import ChI from './ChatInput.tsx';
 export const ChatInput = ChI;
 // export { ChatInput, type ChatInputProps } from '../src.deps.ts';
 
+import CM from './ChatMessages.tsx';
+export const ChatMessages = CM;
+
 import CI from './CopyInput.tsx';
 export const CopyInput = CI;
 
