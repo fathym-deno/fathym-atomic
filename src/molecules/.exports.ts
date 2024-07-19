@@ -1,7 +1,9 @@
-export * from "./azure/_exports.ts";
-export * from "./eac/_exports.ts";
+export * from './azure/_exports.ts';
+export * from './eac/_exports.ts';
 
-import CI from "./CopyInput.tsx";
+export * from './thinky/.exports.ts';
+
+import CI from './CopyInput.tsx';
 export const CopyInput = CI;
 
 export {
@@ -9,8 +11,6 @@ export {
   type ActionGroupProps,
   ChatBox,
   type ChatBoxProps,
-  ChatInput,
-  type ChatInputProps,
   ClickOnceAction,
   type ClickOnceActionProps,
   Display,
@@ -23,8 +23,8 @@ export {
   MenuButtonStyleTypes,
   ResponsiveSet,
   type ResponsiveSetProps,
-} from "../src.deps.ts";
+} from '../src.deps.ts';
 
-export { IoTDisplay, type IoTDisplayProps } from "../src.deps.ts";
+export { IoTDisplay, type IoTDisplayProps } from '../src.deps.ts';
 
-export { type Tab, Tabs, type TabsProps } from "../src.deps.ts";
+export { type Tab, Tabs, type TabsProps } from '../src.deps.ts';

@@ -4,8 +4,13 @@
 // export * from "../../../fathym-deno/atomic-social/mod.ts";
 
 export { type JSX } from "https://esm.sh/preact@10.20.1";
-
 export * from "https://esm.sh/preact@10.20.1/hooks";
+export {
+  Signal,
+  useComputed,
+  useSignal,
+} from "https://esm.sh/*@preact/signals@1.2.3";
+export {} from "https://esm.sh/*@preact/signals-core@1.6.0";
 
 export * from "https://deno.land/x/fathym_common@v0.0.185/mod.ts";
 
