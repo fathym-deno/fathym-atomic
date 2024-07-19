@@ -1,4 +1,4 @@
-export * from "./src/_exports.ts";
+export * from "./src/.exports.ts";
 
 import { islandsConfig as atomicIslandsConfig } from "./src/src.deps.ts";
 
