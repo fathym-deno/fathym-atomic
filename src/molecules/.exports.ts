@@ -8,8 +8,14 @@ export const ChatInput = ChI;
 import CM from './ChatMessages.tsx';
 export const ChatMessages = CM;
 
+import CHs from './Chats.tsx';
+export const Chats = CHs;
+
 import CI from './CopyInput.tsx';
 export const CopyInput = CI;
+
+export * from './ChatSet.ts';
+export * from './ChatSets.ts';
 
 export {
   ActionGroup,
