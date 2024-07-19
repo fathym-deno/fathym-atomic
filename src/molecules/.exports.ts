@@ -1,21 +1,10 @@
 export * from './azure/_exports.ts';
 export * from './eac/_exports.ts';
 
-import ChI from './ChatInput.tsx';
-export const ChatInput = ChI;
-// export { ChatInput, type ChatInputProps } from '../src.deps.ts';
-
-import CM from './ChatMessages.tsx';
-export const ChatMessages = CM;
-
-import CHs from './Chats.tsx';
-export const Chats = CHs;
+export * from './thinky/.exports.ts';
 
 import CI from './CopyInput.tsx';
 export const CopyInput = CI;
-
-export * from './ChatSet.ts';
-export * from './ChatSets.ts';
 
 export {
   ActionGroup,

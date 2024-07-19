@@ -1,7 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
 import { JSX } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { Icon, Signal } from "../src.deps.ts";
+import { Icon, Signal } from "../../src.deps.ts";
 
 export const IsIsland = true;
 

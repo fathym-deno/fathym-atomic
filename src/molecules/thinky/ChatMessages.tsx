@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import { useEffect, useRef } from "preact/hooks";
-import { classSet, Icon, Signal } from "../src.deps.ts";
+import { classSet, Icon, Signal } from "../../src.deps.ts";
 import {
   AIMessage,
   AIMessageChunk,

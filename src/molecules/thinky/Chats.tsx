@@ -6,7 +6,7 @@ import {
   SlideToggle,
   useComputed,
   useSignal,
-} from "../src.deps.ts";
+} from "../../src.deps.ts";
 import { ChatSets } from "./ChatSets.ts";
 
 export const IsIsland = true;
