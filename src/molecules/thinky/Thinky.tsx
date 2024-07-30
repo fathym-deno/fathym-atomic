@@ -62,6 +62,8 @@ export default function Thinky(props: ThinkyProps) {
   const processMessageChunk = (chunk: StringPromptValue | AIMessageChunk) => {
     const chunkValue = chunk instanceof AIMessageChunk
       ? chunk.content.toString()
+      : typeof chunk === "string"
+      ? chunk
       : chunk.value;
 
     if (chunkValue) {
@@ -101,6 +103,7 @@ export default function Thinky(props: ThinkyProps) {
       for await (const event of events) {
         console.log(event.event);
         if (props.streamEvents!.includes(event.event)) {
+          console.log(event);
           const chunk = event.data?.chunk;
 
           if (chunk) {
