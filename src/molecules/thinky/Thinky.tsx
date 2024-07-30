@@ -101,8 +101,8 @@ export default function Thinky(props: ThinkyProps) {
 
     if (events) {
       for await (const event of events) {
-        console.log(event.event);
         if (props.streamEvents!.includes(event.event)) {
+          console.log(event.event);
           console.log(event);
           const chunk = event.data?.chunk;
 
