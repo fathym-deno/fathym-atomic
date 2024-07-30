@@ -31,6 +31,8 @@ export type ThinkyProps = {
   jwt: string;
 
   root: string;
+
+  streamEvents?: string[];
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
 export default function Thinky(props: ThinkyProps) {
@@ -51,8 +53,13 @@ export default function Thinky(props: ThinkyProps) {
     })
     : undefined;
 
+  if (!props.streamEvents?.length) {
+    // event.event === 'on_chat_model_stream' ||
+    // event.event === 'on_llm_stream' ||
+    props.streamEvents = ["on_chain_stream"];
+  }
+
   const processMessageChunk = (chunk: StringPromptValue | AIMessageChunk) => {
-    console.log(chunk);
     const chunkValue = chunk instanceof AIMessageChunk
       ? chunk.content.toString()
       : chunk.value;
@@ -92,10 +99,7 @@ export default function Thinky(props: ThinkyProps) {
 
     if (events) {
       for await (const event of events) {
-        if (
-          event.event === "on_chat_model_stream" ||
-          event.event === "on_llm_stream"
-        ) {
+        if (props.streamEvents!.includes(event.event)) {
           const chunk = event.data?.chunk;
 
           if (chunk) {
