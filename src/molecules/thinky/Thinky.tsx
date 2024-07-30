@@ -54,9 +54,7 @@ export default function Thinky(props: ThinkyProps) {
     : undefined;
 
   if (!props.streamEvents?.length) {
-    // event.event === 'on_chat_model_stream' ||
-    // event.event === 'on_llm_stream' ||
-    props.streamEvents = ["on_chain_stream"];
+    props.streamEvents = ["on_chat_model_stream", "on_llm_stream"]; //, "on_chain_stream"];
   }
 
   const processMessageChunk = (chunk: StringPromptValue | AIMessageChunk) => {
