@@ -112,15 +112,15 @@ export default function Thinky(props: ThinkyProps) {
 
     if (events) {
       for await (const event of events) {
+        console.log(event.event);
         if (props.streamEvents!.includes(event.event)) {
-          console.log(event.event);
-          console.log(event);
           const chunk = event.data?.chunk;
 
           if (chunk) {
             processMessageChunk(chunk as StringPromptValue | AIMessageChunk);
           }
         } else if (event.event.startsWith("thinky:")) {
+          console.log(event.event);
           console.log("thinky-event");
           processThinkyEvent(event.event.replace("thinky:", ""), event.data);
         }
