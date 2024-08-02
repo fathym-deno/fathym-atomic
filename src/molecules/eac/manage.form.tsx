@@ -9,9 +9,13 @@ export type EaCManageFormProps = {
   entDescription?: string;
 
   hideTitle?: boolean;
+
+  title?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
 export function EaCManageForm(props: EaCManageFormProps) {
+  const title = props.title || "Enterprise";
+
   return (
     <form
       method="post"
@@ -29,7 +33,7 @@ export function EaCManageForm(props: EaCManageFormProps) {
               for="subscription-plan"
               class="block uppercase tracking-wide font-bold mb-2 text-xl text-center"
             >
-              {props.entLookup ? "Edit" : "Create"} Enterprise
+              {props.entLookup ? "Edit" : "Create"} {title}
             </label>
           )}
 
@@ -56,7 +60,7 @@ export function EaCManageForm(props: EaCManageFormProps) {
               type="text"
               value={props.entName || ""}
               required
-              placeholder="Enter enterprise name"
+              placeholder={`Enter ${title.toLowerCase()} name`}
             />
           </div>
 
@@ -75,7 +79,7 @@ export function EaCManageForm(props: EaCManageFormProps) {
               value={props.entDescription || ""}
               multiline
               required
-              placeholder="Enter enterprise description"
+              placeholder={`Enter ${title.toLowerCase()} description`}
             />
           </div>
         </div>
@@ -87,7 +91,7 @@ export function EaCManageForm(props: EaCManageFormProps) {
             type="submit"
             class="w-full md:w-auto text-white font-bold m-1 py-2 px-4 rounded focus:outline-none shadow-lg"
           >
-            {props.entLookup ? "Save" : "Create"} Enterprise
+            {props.entLookup ? "Save" : "Create"} {title}
           </Action>
         </>
       </ActionGroup>
