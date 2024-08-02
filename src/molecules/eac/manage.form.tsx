@@ -10,11 +10,11 @@ export type EaCManageFormProps = {
 
   hideTitle?: boolean;
 
-  title?: string;
+  titleContext?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
 export function EaCManageForm(props: EaCManageFormProps) {
-  const title = props.title || "Enterprise";
+  const title = props.titleContext || "Enterprise";
 
   return (
     <form
