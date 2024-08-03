@@ -119,10 +119,12 @@ export default function Thinky(props: ThinkyProps) {
           if (chunk) {
             processMessageChunk(chunk as StringPromptValue | AIMessageChunk);
           }
-        } else if (event.event.startsWith("thinky_")) {
-          console.log(event.event);
+        } else if (
+          event.event === "on_custom_event" && event.event.startsWith("thinky:")
+        ) {
           console.log("thinky-event");
-          processThinkyEvent(event.event.replace("thinky_", ""), event.data);
+          console.log(event.name);
+          processThinkyEvent(event.event.replace("thinky:", ""), event.data);
         }
       }
 
