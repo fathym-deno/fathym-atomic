@@ -84,7 +84,7 @@ export default function Thinky(props: ThinkyProps) {
 
   const processThinkyEvent = (eventName: string, data: unknown) => {
     switch (eventName) {
-      case "page:navigate": {
+      case "page_navigate": {
         if (data === undefined) {
           location.reload();
         } else {
@@ -119,9 +119,11 @@ export default function Thinky(props: ThinkyProps) {
           if (chunk) {
             processMessageChunk(chunk as StringPromptValue | AIMessageChunk);
           }
-        } else if (event.event.startsWith("thinky:")) {
-          console.log(event.event);
+        } else if (
+          event.event === "on_custom_event" && event.event.startsWith("thinky:")
+        ) {
           console.log("thinky-event");
+          console.log(event.name);
           processThinkyEvent(event.event.replace("thinky:", ""), event.data);
         }
       }

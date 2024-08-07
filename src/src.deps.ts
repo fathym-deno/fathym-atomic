@@ -17,7 +17,7 @@ export * from "https://deno.land/x/fathym_common@v0.0.185/mod.ts";
 // export { Icon } from "../../atomic-icons/browser.ts";
 export { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.39/browser.ts";
 
-export * from "https://deno.land/x/fathym_atomic@v0.0.150/mod.ts";
+export * from "https://deno.land/x/fathym_atomic@v0.0.152/mod.ts";
 export * from "https://deno.land/x/fathym_atomic_chat@v0.0.41/mod.ts";
 export * from "https://deno.land/x/fathym_atomic_iot@v0.0.61/mod.ts";
 // export * from "https://deno.land/x/fathym_atomic_reports@v0.0.29/mod.ts";
