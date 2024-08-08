@@ -160,6 +160,10 @@ export default function Thinky(props: ThinkyProps) {
   };
 
   useEffect(() => {
+    setActiveChat(props.activeChat);
+  }, [props.activeChat]);
+
+  useEffect(() => {
     const work = async () => {
       const resp = (await circuit?.invoke(
         {},
