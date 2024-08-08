@@ -47,8 +47,6 @@ export default function Thinky(props: ThinkyProps) {
 
   const sending = useSignal(!props.activeChat);
 
-  const activeChatDef = activeChat ? props.chats[activeChat] : undefined;
-
   if (!props.streamEvents?.length) {
     props.streamEvents = ["on_chat_model_stream", "on_llm_stream"]; //, "on_chain_stream"];
   }
@@ -97,7 +95,7 @@ export default function Thinky(props: ThinkyProps) {
     const events = await circuit?.streamEvents(
       {
         Input: input,
-        ...(activeChatDef!.Inputs ?? {}),
+        ...(props.chats[activeChat!]!.Inputs ?? {}),
       },
       {
         version: "v2",
@@ -180,9 +178,9 @@ export default function Thinky(props: ThinkyProps) {
   }, [props.chats]);
 
   useEffect(() => {
-    const circuit = activeChatDef
+    const circuit = props.chats[activeChat!]
       ? new RemoteRunnable({
-        url: `${props.root}${activeChatDef.CircuitLookup}`,
+        url: `${props.root}${props.chats[activeChat!].CircuitLookup}`,
         options: {
           headers: { Authorization: `Bearer ${props.jwt}` },
         },
