@@ -38,6 +38,8 @@ export type ThinkyProps = {
 export default function Thinky(props: ThinkyProps) {
   const [activeChat, setActiveChat] = useState(props.activeChat);
 
+  const [chats, setChats] = useState<ChatSets>();
+
   const messages = useSignal<BaseMessage[]>([]);
 
   const sending = useSignal(!props.activeChat);
@@ -120,7 +122,8 @@ export default function Thinky(props: ThinkyProps) {
             processMessageChunk(chunk as StringPromptValue | AIMessageChunk);
           }
         } else if (
-          event.event === "on_custom_event" && event.event.startsWith("thinky:")
+          event.event === "on_custom_event" &&
+          event.event.startsWith("thinky:")
         ) {
           console.log("thinky-event");
           console.log(event.name);
@@ -164,34 +167,34 @@ export default function Thinky(props: ThinkyProps) {
       )) as { Messages: BaseMessage[] };
 
       messages.value = resp?.Messages || [];
+
+      processChat();
     };
 
     work();
-  }, []);
-
-  useEffect(() => {
-    messages.value = [];
-
-    processChat();
   }, [activeChat]);
 
-  const chats = Object.keys(props.chats || {}).reduce((acc, chat) => {
-    if (props.groupChats?.includes(chat)) {
-      if (!acc.groups) {
-        acc.groups = {};
+  useEffect(() => {
+    const chats = Object.keys(props.chats || {}).reduce((acc, chat) => {
+      if (props.groupChats?.includes(chat)) {
+        if (!acc.groups) {
+          acc.groups = {};
+        }
+
+        acc.groups[chat] = props.chats[chat];
+      } else {
+        if (!acc._) {
+          acc._ = {};
+        }
+
+        acc._[chat] = props.chats[chat];
       }
 
-      acc.groups[chat] = props.chats[chat];
-    } else {
-      if (!acc._) {
-        acc._ = {};
-      }
+      return acc;
+    }, {} as ChatSets);
 
-      acc._[chat] = props.chats[chat];
-    }
-
-    return acc;
-  }, {} as ChatSets);
+    setChats(chats);
+  }, [props.chats]);
 
   return (
     <div class="flex flex-col h-[calc(100vh_-_64px)]">
@@ -202,7 +205,7 @@ export default function Thinky(props: ThinkyProps) {
           {!props.hideChatHeader && (
             <Chats
               activeChat={activeChat}
-              chats={chats}
+              chats={chats || {}}
               onActiveChatSet={handleSetActiveChat}
               class="shadow-inner"
             />
