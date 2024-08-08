@@ -7,6 +7,7 @@ import {
   BaseMessage,
   HumanMessage,
 } from "npm:@langchain/core/messages";
+import { Runnable } from "npm:@langchain/core/runnables";
 import { RemoteRunnable } from "npm:@langchain/core/runnables/remote";
 import { StringPromptValue } from "npm:@langchain/core/prompt_values";
 import { ChatSet } from "./ChatSet.ts";
@@ -40,20 +41,13 @@ export default function Thinky(props: ThinkyProps) {
 
   const [chats, setChats] = useState<ChatSets>();
 
+  const [circuit, setCircuit] = useState<Runnable>();
+
   const messages = useSignal<BaseMessage[]>([]);
 
   const sending = useSignal(!props.activeChat);
 
   const activeChatDef = activeChat ? props.chats[activeChat] : undefined;
-
-  const circuit = activeChatDef
-    ? new RemoteRunnable({
-      url: `${props.root}${activeChatDef.CircuitLookup}`,
-      options: {
-        headers: { Authorization: `Bearer ${props.jwt}` },
-      },
-    })
-    : undefined;
 
   if (!props.streamEvents?.length) {
     props.streamEvents = ["on_chat_model_stream", "on_llm_stream"]; //, "on_chain_stream"];
@@ -164,21 +158,6 @@ export default function Thinky(props: ThinkyProps) {
   }, [props.activeChat]);
 
   useEffect(() => {
-    const work = async () => {
-      const resp = (await circuit?.invoke(
-        {},
-        { configurable: { thread_id: activeChat, peek: true } },
-      )) as { Messages: BaseMessage[] };
-
-      messages.value = resp?.Messages || [];
-
-      processChat();
-    };
-
-    work();
-  }, [activeChat]);
-
-  useEffect(() => {
     const chats = Object.keys(props.chats || {}).reduce((acc, chat) => {
       if (props.groupChats?.includes(chat)) {
         if (!acc.groups) {
@@ -199,6 +178,34 @@ export default function Thinky(props: ThinkyProps) {
 
     setChats(chats);
   }, [props.chats]);
+
+  useEffect(() => {
+    const circuit = activeChatDef
+      ? new RemoteRunnable({
+        url: `${props.root}${activeChatDef.CircuitLookup}`,
+        options: {
+          headers: { Authorization: `Bearer ${props.jwt}` },
+        },
+      })
+      : undefined;
+
+    setCircuit(circuit);
+  }, [activeChat, chats]);
+
+  useEffect(() => {
+    const work = async () => {
+      const resp = (await circuit?.invoke(
+        {},
+        { configurable: { thread_id: activeChat, peek: true } },
+      )) as { Messages: BaseMessage[] };
+
+      messages.value = resp?.Messages || [];
+
+      processChat();
+    };
+
+    work();
+  }, [circuit]);
 
   return (
     <div class="flex flex-col h-[calc(100vh_-_64px)]">
