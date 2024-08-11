@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "../src.deps.ts";
 
 export type LogoProps = JSX.HTMLAttributes<HTMLImageElement>;
 

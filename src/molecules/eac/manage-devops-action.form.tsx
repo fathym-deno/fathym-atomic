@@ -1,5 +1,10 @@
-import { JSX } from "preact";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  type JSX,
+} from "../../src.deps.ts";
 
 export type EaCManageDevOpsActionFormProps = {
   entLookup: string;
@@ -12,7 +17,7 @@ export type EaCManageDevOpsActionFormProps = {
 
 export function EaCManageDevOpsActionForm(
   props: EaCManageDevOpsActionFormProps,
-) {
+): JSX.Element {
   return (
     <form
       method="post"

@@ -1,4 +1,4 @@
-import { Tab, Tabs, useState } from "../../src.deps.ts";
+import { type JSX, type Tab, Tabs, useState } from "../../src.deps.ts";
 import CloudConnectNewSubForm from "../../molecules/azure/CloudConnectNewSubForm.tsx";
 import { CloudConnectExistingForm } from "../../molecules/azure/CloudConnectExistingForm.tsx";
 import { EaCManageCloudForm } from "../../molecules/eac/manage-cloud.form.tsx";
@@ -17,7 +17,9 @@ export type CloudConnectSubProps = {
   tenants: Record<string, string>;
 };
 
-export default function CloudConnectSub(props: CloudConnectSubProps) {
+export default function CloudConnectSub(
+  props: CloudConnectSubProps,
+): JSX.Element {
   const initState = Object.keys(props.subs || {})?.length > 0
     ? "existing"
     : "new";

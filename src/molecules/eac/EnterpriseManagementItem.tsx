@@ -3,15 +3,8 @@ import {
   ActionGroup,
   ActionStyleTypes,
   Icon,
-  JSX,
+  type JSX,
 } from "../../src.deps.ts";
-// import { JSX } from "preact";
-// import {
-//   Action,
-//   ActionGroup,
-//   ActionStyleTypes,
-// } from "https://deno.land/x/fathym_atomic@v0.0.137/mod.ts";
-// import { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.30/browser.ts";
 
 export const IsIsland = true;
 
@@ -43,7 +36,7 @@ export type EnterpriseManagementItemProps = {
 
 export default function EnterpriseManagementItem(
   props: EnterpriseManagementItemProps,
-) {
+): JSX.Element {
   const deleteEnterprise = (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
     e.preventDefault();
 

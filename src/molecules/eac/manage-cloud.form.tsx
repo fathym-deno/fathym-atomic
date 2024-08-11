@@ -1,5 +1,10 @@
-import { JSX } from "preact";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  type JSX,
+} from "../../src.deps.ts";
 
 export type EaCManageCloudFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
   cloudApplicationID?: string;
@@ -12,7 +17,9 @@ export type EaCManageCloudFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
   entLookup?: string;
 };
 
-export function EaCManageCloudForm(props: EaCManageCloudFormProps) {
+export function EaCManageCloudForm(
+  props: EaCManageCloudFormProps,
+): JSX.Element {
   return (
     <form
       method="post"

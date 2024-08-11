@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import { Location } from "npm:@azure/arm-subscriptions";
+import type { JSX } from "../../src.deps.ts";
+import type { Location } from "npm:@azure/arm-subscriptions@5.1.0";
 import {
   Action,
   ActionGroup,
@@ -16,7 +16,7 @@ export type CloudCALZFormProps = JSX.HTMLAttributes<HTMLFormElement> & {
   resGroupLookup?: string;
 };
 
-export function CloudCALZForm(props: CloudCALZFormProps) {
+export function CloudCALZForm(props: CloudCALZFormProps): JSX.Element {
   return (
     <form
       method="post"
@@ -79,11 +79,7 @@ export function CloudCALZForm(props: CloudCALZFormProps) {
             Location
           </label>
 
-          <Select
-            id="location"
-            name="location"
-            required
-          >
+          <Select id="location" name="location" required>
             <option value="">-- Select a location --</option>
 
             {props.locations.map((location) => {

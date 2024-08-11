@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "../../src.deps.ts";
 import { Action, ActionGroup, classSet } from "../../src.deps.ts";
 
 export const IsIsland = true;
@@ -13,7 +13,7 @@ export type CloudConnectAzureFormProps = {
 
 export default function CloudConnectAzureForm(
   props: CloudConnectAzureFormProps,
-) {
+): JSX.Element {
   const title = props.title || "Connect to Azure";
 
   const description = props.description ||

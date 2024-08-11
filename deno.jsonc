@@ -21,25 +21,34 @@
   },
   "imports": {
     "preact": "npm:preact@10.20.1",
-    "preact/jsx-runtime": "npm:preact@10.20.1/jsx-runtime"
+    "preact/jsx-runtime": "npm:preact@10.20.1/jsx-runtime",
+    "*": "npm:*@preact",
   },
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
   "fmt": {
-    "include": ["./**/*.ts", "./**/*.tsx"],
+    "include": [
+      "./**/*.ts",
+      "./**/*.tsx"
+    ],
     "exclude": [],
     "options": {}
   },
   "lint": {
-    "include": ["./**/*.ts", "./**/*.tsx"],
+    "include": [
+      "./**/*.ts",
+      "./**/*.tsx"
+    ],
     "exclude": [],
     "rules": {
       "include": [],
       "exclude": []
     }
   },
-  "unstable": ["kv"],
+  "unstable": [
+    "kv"
+  ],
   "lock": false
 }

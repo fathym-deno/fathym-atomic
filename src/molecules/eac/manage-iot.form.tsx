@@ -1,13 +1,13 @@
-import { JSX } from "preact";
 import {
   Action,
   ActionGroup,
   classSet,
   Input,
+  type JSX,
   Select,
 } from "../../src.deps.ts";
 import { useState } from "preact/hooks";
-import { DataLookup } from "../../utils/DataLookup.ts";
+import type { DataLookup } from "../../utils/DataLookup.ts";
 
 export const IsIsland = true;
 
@@ -24,7 +24,9 @@ export type EaCManageIoTFormProps = {
   iotResGroupLookup?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export default function EaCManageIoTForm(props: EaCManageIoTFormProps) {
+export default function EaCManageIoTForm(
+  props: EaCManageIoTFormProps,
+): JSX.Element {
   const [curCloudLookup, setCurCloudLookup] = useState(
     props.iotCloudLookup || "",
   );
@@ -37,10 +39,7 @@ export default function EaCManageIoTForm(props: EaCManageIoTFormProps) {
     <form
       method="post"
       {...props}
-      class={classSet(
-        ["w-full max-w-sm md:max-w-md mx-auto py-3 mt-8"],
-        props,
-      )}
+      class={classSet(["w-full max-w-sm md:max-w-md mx-auto py-3 mt-8"], props)}
     >
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full px-3">

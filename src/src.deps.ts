@@ -3,24 +3,22 @@
 // export * from "../../../fathym-deno/atomic-chat/mod.ts";
 // export * from "../../../fathym-deno/atomic-social/mod.ts";
 
-export { type JSX } from "https://esm.sh/preact@10.20.1";
-export * from "https://esm.sh/preact@10.20.1/hooks";
-export {
-  Signal,
-  useComputed,
-  useSignal,
-} from "https://esm.sh/*@preact/signals@1.2.3";
-export {} from "https://esm.sh/*@preact/signals-core@1.6.0";
+export { type ComponentChildren, type JSX } from "preact";
+export * from "preact/hooks";
+export { Signal, useComputed, useSignal } from "npm:@preact/signals@1.2.3";
+export {} from "npm:@preact/signals-core@1.6.0";
 
-export * from "https://deno.land/x/fathym_common@v0.0.185/mod.ts";
+export { render as gfmRender } from "jsr:@deno/gfm@0.8.2";
+
+export * from "jsr:@fathym/common@0.0.211";
 
 // export { Icon } from "../../atomic-icons/browser.ts";
-export { Icon } from "https://deno.land/x/fathym_atomic_icons@v0.0.39/browser.ts";
+export { Icon } from "jsr:@fathym/atomic-icons@0.0.51/browser";
 
-export * from "https://deno.land/x/fathym_atomic@v0.0.152/mod.ts";
-export * from "https://deno.land/x/fathym_atomic_chat@v0.0.41/mod.ts";
-export * from "https://deno.land/x/fathym_atomic_iot@v0.0.61/mod.ts";
+export * from "jsr:@fathym/atomic@0.0.156";
+// export * from "fathym_atomic_chat/mod.ts";
+// export * from "fathym_atomic_iot/mod.ts";
 // export * from "https://deno.land/x/fathym_atomic_reports@v0.0.29/mod.ts";
-export * from "https://deno.land/x/fathym_atomic_social@v0.0.60/mod.ts";
+// export * from "fathym_atomic_social/mod.ts";
 
 export const IS_BROWSER = typeof document !== "undefined";

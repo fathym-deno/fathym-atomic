@@ -1,14 +1,19 @@
-import { JSX } from "preact";
-import { useEffect, useRef } from "preact/hooks";
-import { classSet, Icon, Signal } from "../../src.deps.ts";
+import {
+  classSet,
+  gfmRender,
+  Icon,
+  type JSX,
+  type Signal,
+  useEffect,
+  useRef,
+} from "../../src.deps.ts";
 import {
   AIMessage,
   AIMessageChunk,
-  BaseMessage,
+  type BaseMessage,
   HumanMessage,
   HumanMessageChunk,
-} from "npm:@langchain/core/messages";
-import { render as gfmRender } from "https://deno.land/x/gfm@0.2.3/mod.ts";
+} from "npm:@langchain/core@0.2.23/messages";
 
 export const IsIsland = true;
 
@@ -24,7 +29,7 @@ export type ChatMessagesProps = {
   sending?: Signal<boolean>;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
-export default function ChatMessages(props: ChatMessagesProps) {
+export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

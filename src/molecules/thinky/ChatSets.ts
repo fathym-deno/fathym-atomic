@@ -1,4 +1,4 @@
-import { ChatSet } from "./ChatSet.ts";
+import type { ChatSet } from "./ChatSet.ts";
 
 export type ChatSets = {
   _?: { [id: string]: ChatSet };

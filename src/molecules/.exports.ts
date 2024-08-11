@@ -9,8 +9,8 @@ export const CopyInput = CI;
 export {
   ActionGroup,
   type ActionGroupProps,
-  ChatBox,
-  type ChatBoxProps,
+  // ChatBox,
+  // type ChatBoxProps,
   ClickOnceAction,
   type ClickOnceActionProps,
   Display,
@@ -25,6 +25,6 @@ export {
   type ResponsiveSetProps,
 } from '../src.deps.ts';
 
-export { IoTDisplay, type IoTDisplayProps } from '../src.deps.ts';
+// export { IoTDisplay, type IoTDisplayProps } from '../src.deps.ts';
 
 export { type Tab, Tabs, type TabsProps } from '../src.deps.ts';
