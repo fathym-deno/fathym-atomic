@@ -1,5 +1,10 @@
-import { JSX } from "preact";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  type JSX,
+} from "../../src.deps.ts";
 
 export type EaCManageHandlerFormProps = {
   entLookup: string;
@@ -8,7 +13,9 @@ export type EaCManageHandlerFormProps = {
   handlerApiPath?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageHandlerForm(props: EaCManageHandlerFormProps) {
+export function EaCManageHandlerForm(
+  props: EaCManageHandlerFormProps,
+): JSX.Element {
   return (
     <form
       method="post"

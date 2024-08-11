@@ -1,13 +1,13 @@
-import { JSX } from "preact";
 import {
   Action,
   ActionStyleTypes,
   classSet,
+  type JSX,
   SlideToggle,
   useComputed,
   useSignal,
 } from "../../src.deps.ts";
-import { ChatSets } from "./ChatSets.ts";
+import type { ChatSets } from "./ChatSets.ts";
 
 export const IsIsland = true;
 
@@ -19,7 +19,7 @@ export type ChatsProps = {
   onActiveChatSet?: (chat: string | undefined) => void;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
-export default function Chats(props: ChatsProps) {
+export default function Chats(props: ChatsProps): JSX.Element {
   const activeChat = useSignal(props.activeChat);
 
   const isGroupsList = useSignal(false);

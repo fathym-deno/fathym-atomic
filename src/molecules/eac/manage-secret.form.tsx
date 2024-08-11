@@ -1,13 +1,13 @@
-import { JSX } from "preact";
 import {
   Action,
   ActionGroup,
   classSet,
   Input,
+  type JSX,
   Select,
 } from "../../src.deps.ts";
 import { useState } from "preact/hooks";
-import { DataLookup } from "../../utils/DataLookup.ts";
+import type { DataLookup } from "../../utils/DataLookup.ts";
 
 export const IsIsland = true;
 
@@ -25,7 +25,9 @@ export type EaCManageSecretFormProps = {
   secretKeyVaultLookup?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export default function EaCManageSecretForm(props: EaCManageSecretFormProps) {
+export default function EaCManageSecretForm(
+  props: EaCManageSecretFormProps,
+): JSX.Element {
   const [curCloudLookup, setCurCloudLookup] = useState(
     props.secretCloudLookup || "",
   );

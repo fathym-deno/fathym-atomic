@@ -1,5 +1,10 @@
-import { JSX } from "preact";
-import { Action, ActionGroup, classSet, Input } from "../../src.deps.ts";
+import {
+  Action,
+  ActionGroup,
+  classSet,
+  Input,
+  type JSX,
+} from "../../src.deps.ts";
 
 export type EaCManageFormProps = {
   entLookup?: string;
@@ -13,7 +18,7 @@ export type EaCManageFormProps = {
   titleContext?: string;
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export function EaCManageForm(props: EaCManageFormProps) {
+export function EaCManageForm(props: EaCManageFormProps): JSX.Element {
   const title = props.titleContext || "Enterprise";
 
   return (

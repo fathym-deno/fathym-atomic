@@ -1,13 +1,14 @@
-import { JSX } from "preact";
-import { useState } from "preact/hooks";
+import {} from "preact/hooks";
 import {
   Action,
   ActionGroup,
   classSet,
   Input,
+  type JSX,
   Select,
+  useState,
 } from "../../src.deps.ts";
-import { DataLookup } from "../../utils/DataLookup.ts";
+import type { DataLookup } from "../../utils/DataLookup.ts";
 
 export const IsIsland = true;
 
@@ -26,7 +27,9 @@ export type EaCManageSourceFormProps = {
   sourceSecrets?: DataLookup[];
 } & JSX.HTMLAttributes<HTMLFormElement>;
 
-export default function EaCManageSourceForm(props: EaCManageSourceFormProps) {
+export default function EaCManageSourceForm(
+  props: EaCManageSourceFormProps,
+): JSX.Element {
   const actionOptions: DataLookup[] = [
     {
       Lookup: "configure",

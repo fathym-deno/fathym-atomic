@@ -1,5 +1,5 @@
 import CloudConnectAzureForm from "../../molecules/azure/CloudConnectAzureForm.tsx";
-import { classSet, JSX } from "../../src.deps.ts";
+import { classSet, type JSX } from "../../src.deps.ts";
 import CloudConnectSub from "./CloudConnectSub.tsx";
 
 export type ConnectAzureProps = {

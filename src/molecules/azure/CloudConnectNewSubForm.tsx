@@ -3,7 +3,7 @@ import {
   ActionGroup,
   classSet,
   Input,
-  JSX,
+  type JSX,
   Select,
   SlideToggle,
 } from "../../src.deps.ts";
@@ -16,7 +16,7 @@ export type CloudConnectNewSubFormProps = {
 
 export default function CloudConnectNewSubForm(
   props: CloudConnectNewSubFormProps,
-) {
+): JSX.Element {
   return (
     <form
       method="post"

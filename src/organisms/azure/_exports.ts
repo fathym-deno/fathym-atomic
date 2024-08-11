@@ -1,8 +1,11 @@
-export * from "./CloudConnectSub.tsx";
-export * from "./ConnectAzure.tsx";
+import type { JSX } from "../../src.deps.ts";
 
-import CCS from "./CloudConnectSub.tsx";
-export const CloudConnectSub = CCS;
+export { type CloudConnectSubProps } from "./CloudConnectSub.tsx";
+export { type ConnectAzureProps } from "./ConnectAzure.tsx";
 
-import CA from "./ConnectAzure.tsx";
-export const ConnectAzure = CA;
+import CCS, { type CloudConnectSubProps } from "./CloudConnectSub.tsx";
+export const CloudConnectSub: (props: CloudConnectSubProps) => JSX.Element =
+  CCS;
+
+import CA, { type ConnectAzureProps } from "./ConnectAzure.tsx";
+export const ConnectAzure: (props: ConnectAzureProps) => JSX.Element = CA;

@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "../../src.deps.ts";
 import { Action, ActionGroup, classSet, Select } from "../../src.deps.ts";
 
 export type CloudConnectExistingFormProps = {
@@ -9,7 +9,9 @@ export type CloudConnectExistingFormProps = {
   title?: string;
 } & Omit<JSX.HTMLAttributes<HTMLFormElement>, "title">;
 
-export function CloudConnectExistingForm(props: CloudConnectExistingFormProps) {
+export function CloudConnectExistingForm(
+  props: CloudConnectExistingFormProps,
+): JSX.Element {
   const actionText = props.actionText || "Connect Subscription";
 
   const title = props.title || "Existing Subscription";

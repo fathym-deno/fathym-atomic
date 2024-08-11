@@ -1,7 +1,12 @@
 // deno-lint-ignore-file no-explicit-any
-import { JSX } from "preact";
-import { useEffect, useRef, useState } from "preact/hooks";
-import { Icon, Signal } from "../../src.deps.ts";
+import {
+  Icon,
+  type JSX,
+  type Signal,
+  useEffect,
+  useRef,
+  useState,
+} from "../../src.deps.ts";
 
 export const IsIsland = true;
 
@@ -17,7 +22,7 @@ export type ChatInputProps = {
   sending?: Signal<boolean>;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
-export default function ChatInput(props: ChatInputProps) {
+export default function ChatInput(props: ChatInputProps): JSX.Element {
   const [input, setInput] = useState("");
 
   const textareaRef = useRef(null);

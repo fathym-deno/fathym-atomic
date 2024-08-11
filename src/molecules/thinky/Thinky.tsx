@@ -1,17 +1,21 @@
-import { ComponentChildren, JSX } from "preact";
-import { useEffect, useState } from "preact/hooks";
-import { useSignal } from "../../src.deps.ts";
+import {
+  type ComponentChildren,
+  type JSX,
+  useEffect,
+  useSignal,
+  useState,
+} from "../../src.deps.ts";
 import {
   AIMessage,
   AIMessageChunk,
-  BaseMessage,
+  type BaseMessage,
   HumanMessage,
-} from "npm:@langchain/core/messages";
-import { Runnable } from "npm:@langchain/core/runnables";
-import { RemoteRunnable } from "npm:@langchain/core/runnables/remote";
-import { StringPromptValue } from "npm:@langchain/core/prompt_values";
-import { ChatSet } from "./ChatSet.ts";
-import { ChatSets } from "./ChatSets.ts";
+} from "npm:@langchain/core@0.2.23/messages";
+import type { Runnable } from "npm:@langchain/core@0.2.23/runnables";
+import { RemoteRunnable } from "npm:@langchain/core@0.2.23/runnables/remote";
+import type { StringPromptValue } from "npm:@langchain/core@0.2.23/prompt_values";
+import type { ChatSet } from "./ChatSet.ts";
+import type { ChatSets } from "./ChatSets.ts";
 import Chats from "./Chats.tsx";
 import ChatMessages from "./ChatMessages.tsx";
 import ChatInput from "./ChatInput.tsx";
@@ -36,7 +40,7 @@ export type ThinkyProps = {
   streamEvents?: string[];
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
-export default function Thinky(props: ThinkyProps) {
+export default function Thinky(props: ThinkyProps): JSX.Element {
   const [activeChat, setActiveChat] = useState(props.activeChat);
 
   const [chats, setChats] = useState<ChatSets>();

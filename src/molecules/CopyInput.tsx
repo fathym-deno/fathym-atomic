@@ -2,8 +2,8 @@ import {
   classSet,
   Icon,
   Input,
-  InputProps,
-  JSX,
+  type InputProps,
+  type JSX,
   useRef,
   useState,
 } from "../src.deps.ts";
@@ -20,7 +20,7 @@ export type CopyInputProps = {
   };
 } & InputProps;
 
-export default function CopyInput(props: CopyInputProps) {
+export default function CopyInput(props: CopyInputProps): JSX.Element {
   const copyRef = useRef<HTMLInputElement>(null);
 
   const [success, setSuccess] = useState(false);
