@@ -1,5 +1,5 @@
 {
-  "name": "@fathym/atomic-design-key",
+  "name": "@fathym/atomic-design-kit",
   "version": "0.0.0",
   "exports": {
     ".": "./mod.ts"
