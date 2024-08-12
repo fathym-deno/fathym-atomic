@@ -21,8 +21,7 @@
   },
   "imports": {
     "preact": "npm:preact@10.20.1",
-    "preact/jsx-runtime": "npm:preact@10.20.1/jsx-runtime",
-    "*": "npm:*@preact",
+    "preact/jsx-runtime": "npm:preact@10.20.1/jsx-runtime"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
