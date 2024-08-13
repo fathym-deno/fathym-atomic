@@ -8,7 +8,7 @@ export * from "preact/hooks";
 export { Signal, useComputed, useSignal } from "npm:@preact/signals@1.2.3";
 export {} from "npm:@preact/signals-core@1.6.0";
 
-export { render as gfmRender } from "jsr:@deno/gfm@0.7.0";
+export { render as gfmRender } from "jsr:@deno/gfm@0.6.2";
 
 export * from "jsr:@fathym/common@0.0.211";
 
