@@ -1,6 +1,5 @@
 import {
   classSet,
-  gfmRender,
   Icon,
   type JSX,
   type Signal,
@@ -25,6 +24,8 @@ export type ChatMessagesProps = {
   };
 
   messages: Signal<BaseMessage[]>;
+
+  renderMessage?: (message: BaseMessage) => string;
 
   sending?: Signal<boolean>;
 } & JSX.HTMLAttributes<HTMLDivElement>;
@@ -61,7 +62,8 @@ export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
       ref={chatContainerRef}
     >
       {props.messages.value.map((message, index) => {
-        const messageText = gfmRender((message.content || "").toString());
+        const messageText = props.renderMessage?.(message) ||
+          message.content?.toString() || "";
 
         const isAiMsg = message instanceof AIMessage ||
           message instanceof AIMessageChunk;
