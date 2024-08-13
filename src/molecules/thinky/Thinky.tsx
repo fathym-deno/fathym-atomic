@@ -35,6 +35,8 @@ export type ThinkyProps = {
 
   jwt: string;
 
+  renderMessage?: (message: BaseMessage) => string;
+
   root: string;
 
   streamEvents?: string[];
@@ -224,7 +226,13 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
             />
           )}
 
-          {activeChat && <ChatMessages messages={messages} sending={sending} />}
+          {activeChat && (
+            <ChatMessages
+              messages={messages}
+              renderMessage={props.renderMessage}
+              sending={sending}
+            />
+          )}
         </div>
       </div>
 
