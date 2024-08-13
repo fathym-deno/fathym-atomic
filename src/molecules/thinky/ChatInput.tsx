@@ -1,12 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import {
-  Icon,
-  type JSX,
-  type Signal,
-  useEffect,
-  useRef,
-  useState,
-} from "../../src.deps.ts";
+import { Icon, type JSX, useEffect, useRef, useState } from "../../src.deps.ts";
 
 export const IsIsland = true;
 
@@ -19,7 +12,7 @@ export type ChatInputProps = {
 
   onSendMessage?: (input: string) => void;
 
-  sending?: Signal<boolean>;
+  sending?: boolean;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
 export default function ChatInput(props: ChatInputProps): JSX.Element {
@@ -28,7 +21,7 @@ export default function ChatInput(props: ChatInputProps): JSX.Element {
   const textareaRef = useRef(null);
 
   const sendMessage = () => {
-    if (props.sending?.value || input.trim() === "") return;
+    if (props.sending || input.trim() === "") return;
 
     props.onSendMessage?.(input);
 
@@ -86,9 +79,9 @@ export default function ChatInput(props: ChatInputProps): JSX.Element {
       <button
         onClick={sendMessage}
         class="bg-blue-600 dark:bg-blue-800 text-white p-2 rounded-r-lg text-lg"
-        disabled={props.sending?.value}
+        disabled={props.sending}
       >
-        {!props.sending?.value
+        {!props.sending
           ? (
             "Send"
           )

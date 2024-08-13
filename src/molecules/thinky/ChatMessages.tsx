@@ -2,9 +2,9 @@ import {
   classSet,
   Icon,
   type JSX,
-  type Signal,
   useEffect,
   useRef,
+  useState,
 } from "../../src.deps.ts";
 import {
   AIMessage,
@@ -23,15 +23,25 @@ export type ChatMessagesProps = {
     IconSet?: string;
   };
 
-  messages: Signal<BaseMessage[]>;
+  messages: BaseMessage[];
 
   renderMessage?: (message: BaseMessage) => string;
 
-  sending?: Signal<boolean>;
+  sending?: boolean;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
 export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
   const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  const [lastMsg, setLastMessage] = useState<BaseMessage | undefined>();
+
+  const [useAiPlaceholder, setUseAiPlaceholder] = useState<
+    boolean | undefined
+  >();
+
+  useEffect(() => {
+    setLastMessage(props.messages.slice(-1)[0]);
+  }, [props.messages]);
 
   useEffect(() => {
     // if (chatContainerRef.current) {
@@ -47,13 +57,13 @@ export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
     }
-  }, [props.messages.value, props.sending?.value]);
 
-  const lastMsg = props.messages.value.slice(-1)[0];
-
-  const useAiPlaceholder = (!lastMsg ||
-    !(lastMsg instanceof AIMessage || lastMsg instanceof AIMessageChunk)) &&
-    props.sending?.value;
+    setUseAiPlaceholder(
+      (!lastMsg ||
+        !(lastMsg instanceof AIMessage || lastMsg instanceof AIMessageChunk)) &&
+        props.sending,
+    );
+  }, [lastMsg, props.sending]);
 
   return (
     <div
@@ -61,7 +71,7 @@ export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
       class={classSet(["-:flex-grow -:overflow-y-auto"], props)}
       ref={chatContainerRef}
     >
-      {props.messages.value.map((message, index) => {
+      {props.messages.map((message, index) => {
         const messageText = props.renderMessage?.(message) ||
           message.content?.toString() || "";
 
@@ -86,7 +96,7 @@ export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
 
                   {!useAiPlaceholder &&
                     message === lastMsg &&
-                    props.sending?.value && (
+                    props.sending && (
                     <Icon
                       class="absolute w-12 h-12 top-0 animate-spin"
                       src={props.icons?.IconSet || "/icons/iconset"}
