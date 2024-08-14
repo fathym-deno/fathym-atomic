@@ -6,7 +6,7 @@
 export { type ComponentChildren, type JSX } from "preact";
 export * from "preact/hooks";
 // export { Signal, useComputed, useSignal } from "npm:@preact/signals@1.2.3";
-export {} from "npm:@preact/signals-core@1.6.0";
+// export {} from "npm:@preact/signals-core@1.6.0";
 
 export * from "jsr:@fathym/common@0.0.211";
 
@@ -18,5 +18,15 @@ export * from "jsr:@fathym/atomic@0.0.156";
 // export * from "fathym_atomic_iot/mod.ts";
 // export * from "https://deno.land/x/fathym_atomic_reports@v0.0.29/mod.ts";
 // export * from "fathym_atomic_social/mod.ts";
+
+export {
+  AIMessage,
+  AIMessageChunk,
+  type BaseMessage,
+  HumanMessage,
+} from "npm:@langchain/core@0.2.13/messages";
+export type { Runnable } from "npm:@langchain/core@0.2.13/runnables";
+export { RemoteRunnable } from "npm:@langchain/core@0.2.13/runnables/remote";
+export type { StringPromptValue } from "npm:@langchain/core@0.2.13/prompt_values";
 
 export const IS_BROWSER = typeof document !== "undefined";

@@ -1,18 +1,17 @@
-import {
-  type ComponentChildren,
-  type JSX,
-  useEffect,
-  useState,
-} from "../../src.deps.ts";
+// deno-lint-ignore-file no-explicit-any
 import {
   AIMessage,
   AIMessageChunk,
   type BaseMessage,
+  type ComponentChildren,
   HumanMessage,
-} from "npm:@langchain/core@0.2.23/messages";
-import type { Runnable } from "npm:@langchain/core@0.2.23/runnables";
-import { RemoteRunnable } from "npm:@langchain/core@0.2.23/runnables/remote";
-import type { StringPromptValue } from "npm:@langchain/core@0.2.23/prompt_values";
+  type JSX,
+  RemoteRunnable,
+  type Runnable,
+  type StringPromptValue,
+  useEffect,
+  useState,
+} from "../../src.deps.ts";
 import type { ChatSet } from "./ChatSet.ts";
 import type { ChatSets } from "./ChatSets.ts";
 import Chats from "./Chats.tsx";
@@ -227,8 +226,8 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
           {activeChat && (
             <ChatMessages
-              messages={messages}
-              renderMessage={props.renderMessage}
+              messages={messages as any}
+              renderMessage={props.renderMessage as any}
               sending={sending}
             />
           )}
