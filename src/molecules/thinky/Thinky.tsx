@@ -111,7 +111,13 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
           const chunk = event.data?.chunk;
 
           if (chunk) {
-            processMessageChunk(chunk as StringPromptValue | AIMessageChunk);
+            setTimeout(
+              () =>
+                processMessageChunk(
+                  chunk as StringPromptValue | AIMessageChunk,
+                ),
+              0,
+            );
           }
         } else if (
           event.event === "on_custom_event" &&
@@ -119,7 +125,14 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         ) {
           console.log("thinky-event");
           console.log(event.name);
-          processThinkyEvent(event.event.replace("thinky:", ""), event.data);
+          setTimeout(
+            () =>
+              processThinkyEvent(
+                event.event.replace("thinky:", ""),
+                event.data,
+              ),
+            0,
+          );
         }
       }
 
