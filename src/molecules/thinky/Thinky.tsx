@@ -46,7 +46,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
   const [circuit, setCircuit] = useState<Runnable>();
 
-  let [messages, setMessages] = useState<BaseMessage[]>([]);
+  const [messages, setMessages] = useState<BaseMessage[]>([]);
 
   const [sending, setSending] = useState(!props.activeChat);
 
@@ -65,17 +65,14 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       let lastMsg = messages.slice(-1)[0];
 
       if (!(lastMsg instanceof AIMessage)) {
-        setMessages(messages = [...messages, new AIMessage("")]);
+        lastMsg = new AIMessage(chunkValue);
 
-        lastMsg = messages.slice(-1)[0];
+        setMessages([...messages, lastMsg]);
+      } else {
+        lastMsg.content += chunkValue;
+
+        setMessages([...messages.slice(0, -1), lastMsg]);
       }
-
-      lastMsg.content += chunkValue;
-
-      setTimeout(
-        () => setMessages(messages = [...messages.slice(0, -1), lastMsg]),
-        0,
-      );
     }
   };
 
@@ -131,7 +128,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         { configurable: { thread_id: activeChat, peek: true } },
       )) as { Messages: BaseMessage[] };
 
-      setMessages(messages = resp?.Messages || []);
+      setMessages(resp?.Messages || []);
     }
 
     setSending(false);
@@ -149,7 +146,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       await processChat(input);
     };
 
-    setMessages(messages = [...messages, new HumanMessage(input)]);
+    setMessages([...messages, new HumanMessage(input)]);
 
     setTimeout(work, 0);
   };
@@ -201,7 +198,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         { configurable: { thread_id: activeChat, peek: true } },
       )) as { Messages: BaseMessage[] };
 
-      setMessages(messages = resp?.Messages || []);
+      setMessages(resp?.Messages || []);
 
       processChat();
     };

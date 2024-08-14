@@ -81,6 +81,9 @@ export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
         const isHumanMsg = message instanceof HumanMessage ||
           message instanceof HumanMessageChunk;
 
+        console.log("message");
+        console.log(message);
+
         return (
           <div
             key={index}
