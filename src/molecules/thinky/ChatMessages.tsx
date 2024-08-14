@@ -82,6 +82,7 @@ export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
           message instanceof HumanMessageChunk;
 
         console.log("message");
+
         console.log(message);
 
         return (
