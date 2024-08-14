@@ -24,9 +24,9 @@ export {
   AIMessageChunk,
   type BaseMessage,
   HumanMessage,
-} from "npm:@langchain/core@0.2.13/messages";
-export type { Runnable } from "npm:@langchain/core@0.2.13/runnables";
-export { RemoteRunnable } from "npm:@langchain/core@0.2.13/runnables/remote";
-export type { StringPromptValue } from "npm:@langchain/core@0.2.13/prompt_values";
+} from "npm:@langchain/core@0.2.23/messages";
+export type { Runnable } from "npm:@langchain/core@0.2.23/runnables";
+export { RemoteRunnable } from "npm:@langchain/core@0.2.23/runnables/remote";
+export type { StringPromptValue } from "npm:@langchain/core@0.2.23/prompt_values";
 
 export const IS_BROWSER = typeof document !== "undefined";

@@ -1,4 +1,3 @@
-// deno-lint-ignore-file no-explicit-any
 import {
   AIMessage,
   AIMessageChunk,
@@ -188,6 +187,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         options: {
           headers: { Authorization: `Bearer ${props.jwt}` },
         },
+        fetch: fetch.bind(window),
       })
       : undefined;
 
@@ -226,8 +226,8 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
           {activeChat && (
             <ChatMessages
-              messages={messages as any}
-              renderMessage={props.renderMessage as any}
+              messages={messages}
+              renderMessage={props.renderMessage}
               sending={sending}
             />
           )}
