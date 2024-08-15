@@ -5,7 +5,7 @@
 
 export { type ComponentChildren, type JSX } from "preact";
 export * from "preact/hooks";
-// export { Signal, useComputed, useSignal } from "npm:@preact/signals@1.2.3";
+export { Signal, useComputed, useSignal } from "npm:@preact/signals@1.2.3";
 // export {} from "npm:@preact/signals-core@1.6.0";
 
 export * from "jsr:@fathym/common@0.0.211";

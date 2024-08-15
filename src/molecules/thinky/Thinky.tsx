@@ -9,6 +9,7 @@ import {
   type Runnable,
   type StringPromptValue,
   useEffect,
+  useSignal,
   useState,
 } from "../../src.deps.ts";
 import type { ChatSet } from "./ChatSet.ts";
@@ -46,9 +47,9 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
   const [circuit, setCircuit] = useState<Runnable>();
 
-  const [messages, setMessages] = useState<BaseMessage[]>([]);
+  const messages = useSignal<BaseMessage[]>([]);
 
-  const [sending, setSending] = useState(!props.activeChat);
+  const sending = useSignal(!props.activeChat);
 
   if (!props.streamEvents?.length) {
     props.streamEvents = ["on_chat_model_stream", "on_llm_stream"]; //, "on_chain_stream"];
@@ -62,17 +63,20 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       : chunk.value;
 
     if (chunkValue) {
-      let lastMsg = messages.slice(-1)[0];
+      let lastMsg = messages.value.slice(-1)[0];
 
       if (!(lastMsg instanceof AIMessage)) {
-        lastMsg = new AIMessage(chunkValue);
+        messages.value = [...messages.value, new AIMessage("")];
 
-        setMessages([...messages, lastMsg]);
-      } else {
-        lastMsg.content += chunkValue;
-
-        setMessages([...messages.slice(0, -1), lastMsg]);
+        lastMsg = messages.value.slice(-1)[0];
       }
+
+      lastMsg.content += chunkValue;
+
+      setTimeout(
+        () => (messages.value = [...messages.value.slice(0, -1), lastMsg]),
+        0,
+      );
     }
   };
 
@@ -90,7 +94,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   };
 
   const processChat = async (input?: string) => {
-    setSending(true);
+    sending.value = true;
 
     const events = await circuit?.streamEvents(
       {
@@ -141,10 +145,10 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         { configurable: { thread_id: activeChat, peek: true } },
       )) as { Messages: BaseMessage[] };
 
-      setMessages(resp?.Messages || []);
+      messages.value = resp?.Messages || [];
     }
 
-    setSending(false);
+    sending.value = false;
   };
 
   const handleSetActiveChat = (chat: string | undefined) => {
@@ -159,7 +163,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       await processChat(input);
     };
 
-    setMessages([...messages, new HumanMessage(input)]);
+    messages.value = [...messages.value, new HumanMessage(input)];
 
     setTimeout(work, 0);
   };
@@ -211,7 +215,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         { configurable: { thread_id: activeChat, peek: true } },
       )) as { Messages: BaseMessage[] };
 
-      setMessages(resp?.Messages || []);
+      messages.value = resp?.Messages || [];
 
       processChat();
     };
