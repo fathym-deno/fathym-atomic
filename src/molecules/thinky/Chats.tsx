@@ -67,7 +67,7 @@ export default function Chats(props: ChatsProps): JSX.Element {
             </div>
 
             <div class="flex-grow overflow-y-auto">
-              {Object.keys(chats.value).map((chatId, index) => {
+              {Object.keys(chats || {}).map((chatId, index) => {
                 const chat = chats[chatId];
 
                 return (
