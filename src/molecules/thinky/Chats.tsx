@@ -4,9 +4,10 @@ import {
   classSet,
   type JSX,
   SlideToggle,
-  useComputed,
-  useSignal,
+  useEffect,
+  useState,
 } from "../../src.deps.ts";
+import type { ChatSet } from "./ChatSet.ts";
 import type { ChatSets } from "./ChatSets.ts";
 
 export const IsIsland = true;
@@ -20,33 +21,38 @@ export type ChatsProps = {
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
 export default function Chats(props: ChatsProps): JSX.Element {
-  const activeChat = useSignal(props.activeChat);
+  const [activeChat, setActiveChat] = useState<string | undefined>();
 
-  const isGroupsList = useSignal(false);
+  const [isGroupsList, setIsGroupList] = useState(false);
 
-  const chats = useComputed(() => {
-    return (isGroupsList.value ? props.chats.groups : props.chats._) || {};
-  });
+  const [chats, setChats] = useState<Record<string, ChatSet>>({});
 
-  const activeChatName = useComputed(() => {
-    return activeChat.value
-      ? props.chats._?.[activeChat.value]?.Name ||
-        props.chats.groups?.[activeChat.value]?.Name
-      : undefined;
-  });
+  const [activeChatName, setActiveChatName] = useState<string | undefined>();
 
-  const setActiveChat = (ac?: string): void => {
-    activeChat.value = ac;
+  const handleSetActiveChat = (ac?: string): void => {
+    setActiveChat(ac);
 
-    props.onActiveChatSet?.(activeChat.value);
+    props.onActiveChatSet?.(ac);
   };
+
+  useEffect(() => {
+    handleSetActiveChat(props.activeChat);
+  }, [props.activeChat]);
+
+  useEffect(() => {
+    setChats((isGroupsList ? props.chats.groups : props.chats._) || {});
+  }, [isGroupsList, props.chats]);
+
+  useEffect(() => {
+    setActiveChatName(activeChat ? chats[activeChat]?.Name : undefined);
+  }, [activeChat]);
 
   return (
     <div
       {...props}
       class={classSet(["-:flex -:flex-col -:p-2 -:max-w-sm"], props)}
     >
-      {!activeChat.value
+      {!activeChat
         ? (
           <>
             <div class="flex flex-row mb-2 mx-auto justify-center">
@@ -54,7 +60,7 @@ export default function Chats(props: ChatsProps): JSX.Element {
 
               <SlideToggle
                 checked={isGroupsList}
-                onChange={() => (isGroupsList.value = !isGroupsList.value)}
+                onChange={() => setIsGroupList(!isGroupsList)}
               >
                 <span class="mx-4">Groups</span>
               </SlideToggle>
@@ -62,14 +68,14 @@ export default function Chats(props: ChatsProps): JSX.Element {
 
             <div class="flex-grow overflow-y-auto">
               {Object.keys(chats.value).map((chatId, index) => {
-                const chat = chats.value[chatId];
+                const chat = chats[chatId];
 
                 return (
                   <Action
                     actionStyle={ActionStyleTypes.Link}
                     key={index}
                     class="w-full text-left"
-                    onClick={() => setActiveChat(chatId)}
+                    onClick={() => handleSetActiveChat(chatId)}
                   >
                     {chat.Name}
                   </Action>
@@ -83,7 +89,7 @@ export default function Chats(props: ChatsProps): JSX.Element {
             <div class="flex flex-row gap-2 mb-2 items-center">
               <Action
                 actionStyle={ActionStyleTypes.Link}
-                onClick={() => setActiveChat()}
+                onClick={() => handleSetActiveChat()}
               >
                 {"<"}
                 {/* Back to list */}

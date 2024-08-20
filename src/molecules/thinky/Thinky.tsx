@@ -9,7 +9,6 @@ import {
   type Runnable,
   type StringPromptValue,
   useEffect,
-  useSignal,
   useState,
 } from "../../src.deps.ts";
 import type { ChatSet } from "./ChatSet.ts";
@@ -47,15 +46,27 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
   const [circuit, setCircuit] = useState<Runnable>();
 
-  const messages = useSignal<BaseMessage[]>([]);
+  const [messages, setMessages] = useState<BaseMessage[]>([]);
 
-  const sending = useSignal(!props.activeChat);
+  const [sending, setSending] = useState(!props.activeChat);
 
   if (!props.streamEvents?.length) {
     props.streamEvents = ["on_chat_model_stream", "on_llm_stream"]; //, "on_chain_stream"];
   }
 
-  const processMessageChunk = (chunk: StringPromptValue | AIMessageChunk) => {
+  // deno-lint-ignore no-explicit-any
+  const waitFor = (handler: (...args: any[]) => void | Promise<void>) =>
+    new Promise<void>((resolve) => {
+      setTimeout(async (e) => {
+        await handler(e);
+
+        resolve();
+      }, 0);
+    });
+
+  const processMessageChunk = async (
+    chunk: StringPromptValue | AIMessageChunk,
+  ) => {
     const chunkValue = chunk instanceof AIMessageChunk
       ? chunk.content.toString()
       : typeof chunk === "string"
@@ -63,20 +74,19 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       : chunk.value;
 
     if (chunkValue) {
-      let lastMsg = messages.value.slice(-1)[0];
+      let lastMsg = messages.slice(-1)[0];
+
+      let msgs = messages;
 
       if (!(lastMsg instanceof AIMessage)) {
-        messages.value = [...messages.value, new AIMessage("")];
+        msgs = [...msgs, new AIMessage("")];
 
-        lastMsg = messages.value.slice(-1)[0];
+        lastMsg = msgs.slice(-1)[0];
       }
 
       lastMsg.content += chunkValue;
 
-      setTimeout(
-        () => (messages.value = [...messages.value.slice(0, -1), lastMsg]),
-        0,
-      );
+      await waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
     }
   };
 
@@ -94,78 +104,76 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   };
 
   const processChat = async (input?: string) => {
-    sending.value = true;
+    setSending(true);
 
-    const events = await circuit?.streamEvents(
-      {
-        Input: input,
-        ...(props.chats[activeChat!]!.Inputs ?? {}),
-      },
-      {
-        version: "v2",
-        configurable: { thread_id: activeChat },
-        recursionLimit: 100,
-      },
-    );
+    await waitFor(async () => {
+      const events = await circuit?.streamEvents(
+        {
+          Input: input,
+          ...(props.chats[activeChat!]!.Inputs ?? {}),
+        },
+        {
+          version: "v2",
+          configurable: { thread_id: activeChat },
+          recursionLimit: 100,
+        },
+      );
 
-    if (events) {
-      for await (const event of events) {
-        console.log(event.event);
-        if (props.streamEvents!.includes(event.event)) {
-          const chunk = event.data?.chunk;
+      if (events) {
+        for await (const event of events) {
+          console.log(event.event);
+          if (props.streamEvents!.includes(event.event)) {
+            const chunk = event.data?.chunk;
 
-          if (chunk) {
-            setTimeout(
-              () =>
-                processMessageChunk(
-                  chunk as StringPromptValue | AIMessageChunk,
+            if (chunk) {
+              await waitFor(
+                async () =>
+                  await processMessageChunk(
+                    chunk as StringPromptValue | AIMessageChunk,
+                  ),
+              );
+            }
+          } else if (
+            event.event === "on_custom_event" &&
+            event.event.startsWith("thinky:")
+          ) {
+            console.log("thinky-event");
+            console.log(event.name);
+            await waitFor(
+              async () =>
+                await processThinkyEvent(
+                  event.event.replace("thinky:", ""),
+                  event.data,
                 ),
-              0,
             );
           }
-        } else if (
-          event.event === "on_custom_event" &&
-          event.event.startsWith("thinky:")
-        ) {
-          console.log("thinky-event");
-          console.log(event.name);
-          setTimeout(
-            () =>
-              processThinkyEvent(
-                event.event.replace("thinky:", ""),
-                event.data,
-              ),
-            0,
-          );
         }
+
+        const resp = (await circuit?.invoke(
+          {},
+          { configurable: { thread_id: activeChat, peek: true } },
+        )) as { Messages: BaseMessage[] };
+
+        setMessages(resp?.Messages || []);
       }
 
-      const resp = (await circuit?.invoke(
-        {},
-        { configurable: { thread_id: activeChat, peek: true } },
-      )) as { Messages: BaseMessage[] };
-
-      messages.value = resp?.Messages || [];
-    }
-
-    sending.value = false;
+      setSending(false);
+    });
   };
 
   const handleSetActiveChat = (chat: string | undefined) => {
     setActiveChat(chat);
   };
 
-  const sendMessage = (input: string) => {
+  const sendMessage = async (input: string) => {
     console.log("sendMessage");
     console.log(input);
 
-    const work = async () => {
+    setMessages([...messages, new HumanMessage(input)]);
+
+    await waitFor(async () => {
       await processChat(input);
-    };
-
-    messages.value = [...messages.value, new HumanMessage(input)];
-
-    setTimeout(work, 0);
+    });
   };
 
   useEffect(() => {
@@ -215,7 +223,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         { configurable: { thread_id: activeChat, peek: true } },
       )) as { Messages: BaseMessage[] };
 
-      messages.value = resp?.Messages || [];
+      setMessages(resp?.Messages || []);
 
       processChat();
     };
@@ -233,7 +241,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
             <Chats
               activeChat={activeChat}
               chats={chats || {}}
-              onActiveChatSet={handleSetActiveChat}
+              onActiveChatSet={(e) => handleSetActiveChat(e)}
               class="shadow-inner"
             />
           )}
@@ -248,7 +256,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         </div>
       </div>
 
-      <ChatInput sending={sending} onSendMessage={sendMessage} />
+      <ChatInput sending={sending} onSendMessage={(e) => sendMessage(e)} />
     </div>
   );
 }
