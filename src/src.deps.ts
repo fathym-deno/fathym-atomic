@@ -10,12 +10,12 @@ export * from "preact/hooks";
 // export { Signal, useComputed, useSignal } from "npm:@preact/signals@1.2.3";
 // export {} from "npm:@preact/signals-core@1.6.0";
 
-export * from "jsr:@fathym/common@0";
+export * from "jsr:@fathym/common@0.2.22";
 
 // export { Icon } from "../../atomic-icons/browser.ts";
-export { Icon } from "jsr:@fathym/atomic-icons@0/browser";
+export { Icon } from "jsr:@fathym/atomic-icons@0.0.59/browser";
 
-export * from "jsr:@fathym/atomic@0";
+export * from "jsr:@fathym/atomic@0.0.162";
 // export * from "fathym_atomic_chat/mod.ts";
 // export * from "fathym_atomic_iot/mod.ts";
 // export * from "https://deno.land/x/fathym_atomic_reports@v0.0.29/mod.ts";
