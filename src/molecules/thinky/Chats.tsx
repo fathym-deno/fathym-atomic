@@ -25,7 +25,9 @@ export default function Chats(props: ChatsProps): JSX.Element {
 
   const [isGroupsList, setIsGroupList] = useState(false);
 
-  const [chats, setChats] = useState<Record<string, ChatSet>>({});
+  const [chats, setChats] = useState<Record<string, ChatSet>>(
+    props.chats._ || {},
+  );
 
   const [activeChatName, setActiveChatName] = useState<string | undefined>();
 
