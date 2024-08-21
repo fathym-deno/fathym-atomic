@@ -96,10 +96,10 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
     }
   };
 
-  const processChat = async (input?: string) => {
+  const processChat = (input?: string) => {
     setSending(true);
 
-    await waitFor(async () => {
+    waitFor(async () => {
       const events = await circuit?.streamEvents(
         {
           Input: input,
@@ -122,7 +122,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
           lastMsg = msgs.slice(-1)[0];
 
-          await waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
+          waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
         }
 
         for await (const event of events) {
@@ -131,7 +131,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
             const chunk = event.data?.chunk;
 
             if (chunk) {
-              await waitFor(async () => {
+              waitFor(async () => {
                 lastMsg = await processMessageChunk(
                   chunk as StringPromptValue | AIMessageChunk,
                   lastMsg,
@@ -144,7 +144,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
           ) {
             console.log("thinky-event");
             console.log(event.name);
-            await waitFor(
+            waitFor(
               async () =>
                 await processThinkyEvent(
                   event.event.replace("thinky:", ""),
@@ -170,13 +170,13 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
     setActiveChat(chat);
   };
 
-  const sendMessage = async (input: string) => {
+  const sendMessage = (input: string) => {
     console.log("sendMessage");
     console.log(input);
 
     setMessages([...messages, new HumanMessage(input)]);
 
-    await waitFor(async () => {
+    waitFor(async () => {
       await processChat(input);
     });
   };
