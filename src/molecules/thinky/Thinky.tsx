@@ -113,17 +113,21 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       );
 
       if (events) {
+        const msgs = messages;
+
         let lastMsg = messages.slice(-1)[0];
 
-        let msgs = messages;
+        if (input) {
+          messages.push(new HumanMessage(input));
+        }
 
         if (!(lastMsg instanceof AIMessage)) {
-          msgs = [...msgs, new AIMessage("")];
-
-          lastMsg = msgs.slice(-1)[0];
-
-          waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
+          msgs.push(new AIMessage(""));
         }
+
+        lastMsg = msgs.slice(-1)[0];
+
+        waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
 
         for await (const event of events) {
           console.log(event.event);
@@ -171,11 +175,6 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   };
 
   const sendMessage = (input: string) => {
-    console.log("sendMessage");
-    console.log(input);
-
-    setMessages([...messages, new HumanMessage(input)]);
-
     waitFor(async () => {
       await processChat(input);
     });
