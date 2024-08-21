@@ -66,7 +66,8 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
   const processMessageChunk = async (
     chunk: StringPromptValue | AIMessageChunk,
-  ) => {
+    lastMsg: BaseMessage,
+  ): Promise<BaseMessage> => {
     const chunkValue = chunk instanceof AIMessageChunk
       ? chunk.content.toString()
       : typeof chunk === "string"
@@ -74,20 +75,12 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       : chunk.value;
 
     if (chunkValue) {
-      let lastMsg = messages.slice(-1)[0];
-
-      let msgs = messages;
-
-      if (!(lastMsg instanceof AIMessage)) {
-        msgs = [...msgs, new AIMessage("")];
-
-        lastMsg = msgs.slice(-1)[0];
-      }
-
       lastMsg.content += chunkValue;
 
-      await waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
+      await waitFor(() => setMessages([...messages.slice(0, -1), lastMsg]));
     }
+
+    return lastMsg;
   };
 
   const processThinkyEvent = (eventName: string, data: unknown) => {
@@ -120,18 +113,30 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       );
 
       if (events) {
+        let lastMsg = messages.slice(-1)[0];
+
+        let msgs = messages;
+
+        if (!(lastMsg instanceof AIMessage)) {
+          msgs = [...msgs, new AIMessage("")];
+
+          lastMsg = msgs.slice(-1)[0];
+
+          await waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
+        }
+
         for await (const event of events) {
           console.log(event.event);
           if (props.streamEvents!.includes(event.event)) {
             const chunk = event.data?.chunk;
 
             if (chunk) {
-              await waitFor(
-                async () =>
-                  await processMessageChunk(
-                    chunk as StringPromptValue | AIMessageChunk,
-                  ),
-              );
+              await waitFor(async () => {
+                lastMsg = await processMessageChunk(
+                  chunk as StringPromptValue | AIMessageChunk,
+                  lastMsg,
+                );
+              });
             }
           } else if (
             event.event === "on_custom_event" &&
