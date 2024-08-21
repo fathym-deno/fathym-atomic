@@ -46,7 +46,13 @@ export default function Chats(props: ChatsProps): JSX.Element {
   }, [isGroupsList, props.chats]);
 
   useEffect(() => {
-    setActiveChatName(activeChat ? chats[activeChat]?.Name : undefined);
+    setActiveChatName(
+      activeChat
+        ? props.chats._?.[activeChat]?.Name ||
+          props.chats.groups?.[activeChat]?.Name ||
+          undefined
+        : undefined,
+    );
   }, [activeChat]);
 
   return (
