@@ -61,7 +61,7 @@ export default function ChatMessages(props: ChatMessagesProps): JSX.Element {
         !(lastMsg instanceof AIMessage || lastMsg instanceof AIMessageChunk)) &&
         props.sending,
     );
-  }, [lastMsg, props.sending]);
+  }, [lastMsg, lastMsg?.content, props.sending]);
 
   return (
     <div
