@@ -13,6 +13,8 @@ export {
   // type ChatBoxProps,
   ClickOnceAction,
   type ClickOnceActionProps,
+  Collapsible,
+  type CollapsibleProps,
   Display,
   type DisplayProps,
   DisplayStyleTypes,

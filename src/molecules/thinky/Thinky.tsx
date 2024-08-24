@@ -246,7 +246,6 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
               activeChat={activeChat}
               chats={chats || {}}
               onActiveChatSet={(e) => handleSetActiveChat(e)}
-              class="shadow-inner"
             />
           )}
 
