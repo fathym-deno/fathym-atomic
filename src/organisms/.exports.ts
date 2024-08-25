@@ -1,5 +1,5 @@
-export * from "./azure/_exports.ts";
-export * from "./feed/_exports.ts";
+export * from './azure/_exports.ts';
+export * from './feed/_exports.ts';
 
 export {
   // ChatHistory,
@@ -7,6 +7,9 @@ export {
   // type ChatHistoryProps,
   Features,
   type FeaturesProps,
+  FileList,
+  type FileListProps,
+  type FileListTree,
   Footer,
   type FooterProps,
   Header,
@@ -18,7 +21,7 @@ export {
   type StepFeature,
   StepsFeatures,
   type StepsFeaturesProps,
-} from "../src.deps.ts";
+} from '../src.deps.ts';
 
 // export { FeedCard, type FeedCardProps } from "../src.deps.ts";
 
@@ -30,4 +33,4 @@ export {
 
 // export { ProfileDisplay, type ProfileDisplayProps } from "../src.deps.ts";
 
-export { FathymHeader } from "./FathymHeader.tsx";
+export { FathymHeader } from './FathymHeader.tsx';
