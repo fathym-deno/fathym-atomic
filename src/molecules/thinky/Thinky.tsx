@@ -130,7 +130,6 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
 
         for await (const event of events) {
-          console.log(event.event);
           if (props.streamEvents!.includes(event.event)) {
             const chunk = event.data?.chunk;
 
