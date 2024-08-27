@@ -107,7 +107,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         },
         {
           version: "v2",
-          configurable: { thread_id: activeChat },
+          configurable: { thread_id: activeChat, checkpoint_ns: "current" },
           recursionLimit: 100,
         },
       );
@@ -159,7 +159,13 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
 
         const resp = (await circuit?.invoke(
           {},
-          { configurable: { thread_id: activeChat, peek: true } },
+          {
+            configurable: {
+              thread_id: activeChat,
+              checkpoint_ns: "current",
+              peek: true,
+            },
+          },
         )) as { Messages: BaseMessage[] };
 
         setMessages(resp?.Messages || []);
@@ -223,7 +229,13 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
     const work = async () => {
       const resp = (await circuit?.invoke(
         {},
-        { configurable: { thread_id: activeChat, peek: true } },
+        {
+          configurable: {
+            thread_id: activeChat,
+            checkpoint_ns: "current",
+            peek: true,
+          },
+        },
       )) as { Messages: BaseMessage[] };
 
       setMessages(resp?.Messages || []);
