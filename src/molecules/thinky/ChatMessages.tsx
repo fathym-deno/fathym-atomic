@@ -1,18 +1,16 @@
 import {
+  AIMessage,
+  AIMessageChunk,
+  type BaseMessage,
   classSet,
+  HumanMessage,
+  HumanMessageChunk,
   Icon,
   type JSX,
   useEffect,
   useRef,
   useState,
 } from "../../src.deps.ts";
-import {
-  AIMessage,
-  AIMessageChunk,
-  type BaseMessage,
-  HumanMessage,
-  HumanMessageChunk,
-} from "npm:@langchain/core@0.2.23/messages";
 
 export const IsIsland = true;
 

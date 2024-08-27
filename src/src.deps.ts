@@ -10,12 +10,12 @@ export * from "preact/hooks";
 // export { Signal, useComputed, useSignal } from "npm:@preact/signals@1.2.3";
 // export {} from "npm:@preact/signals-core@1.6.0";
 
-export * from "jsr:@fathym/common@0.2.22";
+export * from "jsr:@fathym/common@0.2.33";
 
 // export { Icon } from "../../atomic-icons/browser.ts";
-export { Icon } from "jsr:@fathym/atomic-icons@0.0.59/browser";
+export { Icon } from "jsr:@fathym/atomic-icons@0.0.60/browser";
 
-export * from "jsr:@fathym/atomic@0.0.165";
+export * from "jsr:@fathym/atomic@0.0.167";
 // export * from "fathym_atomic_chat/mod.ts";
 // export * from "fathym_atomic_iot/mod.ts";
 // export * from "https://deno.land/x/fathym_atomic_reports@v0.0.29/mod.ts";
@@ -26,9 +26,10 @@ export {
   AIMessageChunk,
   type BaseMessage,
   HumanMessage,
-} from "npm:@langchain/core@0.2.23/messages";
-export type { Runnable } from "npm:@langchain/core@0.2.23/runnables";
-export { RemoteRunnable } from "npm:@langchain/core@0.2.23/runnables/remote";
-export type { StringPromptValue } from "npm:@langchain/core@0.2.23/prompt_values";
+  HumanMessageChunk,
+} from "npm:@langchain/core@0.2.30/messages";
+export type { Runnable } from "npm:@langchain/core@0.2.30/runnables";
+export { RemoteRunnable } from "npm:@langchain/core@0.2.30/runnables/remote";
+export type { StringPromptValue } from "npm:@langchain/core@0.2.30/prompt_values";
 
 export const IS_BROWSER = typeof document !== "undefined";
