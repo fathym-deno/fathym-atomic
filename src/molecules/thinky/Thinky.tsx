@@ -103,7 +103,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       const events = await circuit?.streamEvents(
         {
           Input: input,
-          ...(props.chats[activeChat!]!.Inputs ?? {}),
+          ...(input ? props.chats[activeChat!]!.Inputs ?? {} : {}),
         },
         {
           version: "v2",
