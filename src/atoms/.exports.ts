@@ -6,8 +6,10 @@ export {
   ActionStyleTypes,
   BrowserNavBlock,
   type BrowserNavBlockProps,
-} from "../src.deps.ts";
+  Icon,
+  type IconProps,
+} from '../src.deps.ts';
 
-export { Logo, type LogoProps } from "./Logo.tsx";
+export { Logo, type LogoProps } from './Logo.tsx';
 
-export * from "./forms/_exports.ts";
+export * from './forms/_exports.ts';
