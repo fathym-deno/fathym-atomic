@@ -247,7 +247,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   }, [circuit]);
 
   return (
-    <div class="flex flex-col h-[calc(100vh_-_64px)]">
+    <div class="flex flex-col h-full">
       <div class="flex-grow flex overflow-y-hidden">
         <div class="flex-1 overflow-y-auto">{props.children}</div>
 
