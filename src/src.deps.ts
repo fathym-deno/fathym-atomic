@@ -12,7 +12,7 @@ export * from "preact/hooks";
 
 export * from "jsr:@fathym/common@0.2.160";
 
-export * from "jsr:@fathym/atomic@0.0.172";
+export * from "jsr:@fathym/atomic@0.0.175";
 // export * from "fathym_atomic_chat/mod.ts";
 // export * from "fathym_atomic_iot/mod.ts";
 // export * from "https://deno.land/x/fathym_atomic_reports@v0.0.29/mod.ts";
