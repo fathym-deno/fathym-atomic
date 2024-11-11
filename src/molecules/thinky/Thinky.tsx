@@ -2,6 +2,7 @@ import {
   AIMessage,
   AIMessageChunk,
   type BaseMessage,
+  classSet,
   type ComponentChildren,
   HumanMessage,
   type JSX,
@@ -247,7 +248,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   }, [circuit]);
 
   return (
-    <div class="flex flex-col h-full">
+    <div class={classSet(["-:flex -:flex-col -:h-full"], props)}>
       <div class="flex-grow flex overflow-y-hidden">
         <div class="flex-1 overflow-y-auto">{props.children}</div>
 
