@@ -33,7 +33,7 @@ export type ThinkyProps = {
 
   jwt: string;
 
-  onChatState: (chatState: Record<string, unknown>) => void;
+  onChatState?: (chatState: Record<string, unknown>) => void;
 
   renderMessage?: (message: BaseMessage) => string;
 
