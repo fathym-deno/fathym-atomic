@@ -33,6 +33,8 @@ export type ThinkyProps = {
 
   jwt: string;
 
+  onChatState: (chatState: Record<string, unknown>) => void;
+
   renderMessage?: (message: BaseMessage) => string;
 
   root: string;
@@ -170,6 +172,8 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         )) as { Messages: BaseMessage[] };
 
         setMessages(resp?.Messages || []);
+
+        props.onChatState?.(resp);
       }
 
       setSending(false);
@@ -240,6 +244,8 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
       )) as { Messages: BaseMessage[] };
 
       setMessages(resp?.Messages || []);
+
+      props.onChatState?.(resp);
 
       processChat();
     };
