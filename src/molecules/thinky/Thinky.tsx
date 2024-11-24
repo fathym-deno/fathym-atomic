@@ -100,84 +100,86 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   };
 
   const processChat = (input?: string) => {
-    setSending(true);
+    if (!sending) {
+      setSending(true);
 
-    waitFor(async () => {
-      const events = await circuit?.streamEvents(
-        {
-          Input: input,
-          ...(input ? props.chats[activeChat!]!.Inputs ?? {} : {}),
-        },
-        {
-          version: "v2",
-          configurable: { thread_id: activeChat, checkpoint_ns: "current" },
-          recursionLimit: 100,
-        },
-      );
-
-      if (events) {
-        const msgs = messages;
-
-        let lastMsg = messages.slice(-1)[0];
-
-        if (input) {
-          messages.push(new HumanMessage(input));
-        }
-
-        if (!(lastMsg instanceof AIMessage)) {
-          msgs.push(new AIMessage(""));
-        }
-
-        lastMsg = msgs.slice(-1)[0];
-
-        waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
-
-        for await (const event of events) {
-          if (props.streamEvents!.includes(event.event)) {
-            const chunk = event.data?.chunk;
-
-            if (chunk) {
-              waitFor(async () => {
-                lastMsg = await processMessageChunk(
-                  chunk as StringPromptValue | AIMessageChunk,
-                  lastMsg,
-                );
-              });
-            }
-          } else if (
-            event.event === "on_custom_event" &&
-            event.event.startsWith("thinky:")
-          ) {
-            console.log("thinky-event");
-            console.log(event.name);
-            waitFor(
-              async () =>
-                await processThinkyEvent(
-                  event.event.replace("thinky:", ""),
-                  event.data,
-                ),
-            );
-          }
-        }
-
-        const resp = (await circuit?.invoke(
-          {},
+      waitFor(async () => {
+        const events = await circuit?.streamEvents(
           {
-            configurable: {
-              thread_id: activeChat,
-              checkpoint_ns: "current",
-              peek: true,
-            },
+            Input: input,
+            ...(input ? props.chats[activeChat!]!.Inputs ?? {} : {}),
           },
-        )) as { Messages: BaseMessage[] };
+          {
+            version: "v2",
+            configurable: { thread_id: activeChat, checkpoint_ns: "current" },
+            recursionLimit: 100,
+          },
+        );
 
-        setMessages(resp?.Messages || []);
+        if (events) {
+          const msgs = messages;
 
-        props.onChatState?.(resp);
-      }
+          let lastMsg = messages.slice(-1)[0];
 
-      setSending(false);
-    });
+          if (input) {
+            messages.push(new HumanMessage(input));
+          }
+
+          if (!(lastMsg instanceof AIMessage)) {
+            msgs.push(new AIMessage(""));
+          }
+
+          lastMsg = msgs.slice(-1)[0];
+
+          waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
+
+          for await (const event of events) {
+            if (props.streamEvents!.includes(event.event)) {
+              const chunk = event.data?.chunk;
+
+              if (chunk) {
+                waitFor(async () => {
+                  lastMsg = await processMessageChunk(
+                    chunk as StringPromptValue | AIMessageChunk,
+                    lastMsg,
+                  );
+                });
+              }
+            } else if (
+              event.event === "on_custom_event" &&
+              event.event.startsWith("thinky:")
+            ) {
+              console.log("thinky-event");
+              console.log(event.name);
+              waitFor(
+                async () =>
+                  await processThinkyEvent(
+                    event.event.replace("thinky:", ""),
+                    event.data,
+                  ),
+              );
+            }
+          }
+
+          const resp = (await circuit?.invoke(
+            {},
+            {
+              configurable: {
+                thread_id: activeChat,
+                checkpoint_ns: "current",
+                peek: true,
+              },
+            },
+          )) as { Messages: BaseMessage[] };
+
+          setMessages(resp?.Messages || []);
+
+          props.onChatState?.(resp);
+        }
+
+        setSending(false);
+      });
+    }
   };
 
   const handleSetActiveChat = (chat: string | undefined) => {
@@ -191,7 +193,9 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   };
 
   useEffect(() => {
-    setActiveChat(props.activeChat);
+    if (props.activeChat !== activeChat) {
+      setActiveChat(props.activeChat);
+    }
   }, [props.activeChat]);
 
   useEffect(() => {
@@ -231,26 +235,30 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
   }, [activeChat, chats]);
 
   useEffect(() => {
-    const work = async () => {
-      const resp = (await circuit?.invoke(
-        {},
-        {
-          configurable: {
-            thread_id: activeChat,
-            checkpoint_ns: "current",
-            peek: true,
+    if (!sending) {
+      const work = async () => {
+        const resp = (await circuit?.invoke(
+          {},
+          {
+            configurable: {
+              thread_id: activeChat,
+              checkpoint_ns: "current",
+              peek: true,
+            },
           },
-        },
-      )) as { Messages: BaseMessage[] };
+        )) as { Messages: BaseMessage[] };
 
-      setMessages(resp?.Messages || []);
+        setMessages(resp?.Messages || []);
 
-      props.onChatState?.(resp);
+        props.onChatState?.(resp);
 
-      processChat();
-    };
+        processChat();
+      };
 
-    work();
+      setSending(true);
+
+      waitFor(work);
+    }
   }, [circuit]);
 
   return (
