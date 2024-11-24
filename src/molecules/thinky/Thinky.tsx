@@ -107,7 +107,7 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
         const events = await circuit?.streamEvents(
           {
             Input: input,
-            ...(input ? props.chats[activeChat!]!.Inputs ?? {} : {}),
+            ...(props.chats[activeChat!]!.Inputs ?? {}),
           },
           {
             version: "v2",
@@ -162,7 +162,9 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
           }
 
           const resp = (await circuit?.invoke(
-            {},
+            {
+              ...(props.chats[activeChat!]!.Inputs ?? {}),
+            },
             {
               configurable: {
                 thread_id: activeChat,
@@ -238,7 +240,9 @@ export default function Thinky(props: ThinkyProps): JSX.Element {
     if (!sending) {
       const work = async () => {
         const resp = (await circuit?.invoke(
-          {},
+          {
+            ...(props.chats[activeChat!]!.Inputs ?? {}),
+          },
           {
             configurable: {
               thread_id: activeChat,
