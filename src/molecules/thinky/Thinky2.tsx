@@ -120,73 +120,71 @@ export default function Thinky2({
   };
 
   const processChat = (input?: string) => {
-    if (!sending) {
-      setSending(true);
+    setSending(true);
 
-      waitFor(async () => {
-        const events = await circuit?.streamEvents(
-          {
-            Input: input,
-            ...(inputs ?? {}),
-          },
-          {
-            version: "v2",
-            configurable: { thread_id: chatId, checkpoint_ns: "current" },
-            recursionLimit: 100,
-          },
-        );
+    waitFor(async () => {
+      const events = await circuit?.streamEvents(
+        {
+          Input: input,
+          ...(inputs ?? {}),
+        },
+        {
+          version: "v2",
+          configurable: { thread_id: chatId, checkpoint_ns: "current" },
+          recursionLimit: 100,
+        },
+      );
 
-        if (events) {
-          const msgs = messages;
+      if (events) {
+        const msgs = messages;
 
-          let lastMsg = messages.slice(-1)[0];
+        let lastMsg = messages.slice(-1)[0];
 
-          if (input) {
-            messages.push(new HumanMessage(input));
-          }
-
-          if (!(lastMsg instanceof AIMessage)) {
-            msgs.push(new AIMessage(""));
-          }
-
-          lastMsg = msgs.slice(-1)[0];
-
-          waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
-
-          for await (const event of events) {
-            if (streamEvents!.includes(event.event)) {
-              const chunk = event.data?.chunk;
-
-              if (chunk) {
-                waitFor(async () => {
-                  lastMsg = await processMessageChunk(
-                    chunk as StringPromptValue | AIMessageChunk,
-                    lastMsg,
-                  );
-                });
-              }
-            } else if (
-              event.event === "on_custom_event" &&
-              event.event.startsWith("Thinky2:")
-            ) {
-              console.log("Thinky2-event");
-              console.log(event.name);
-              waitFor(
-                async () =>
-                  await processThinky2Event(
-                    event.event.replace("Thinky2:", ""),
-                    event.data,
-                  ),
-              );
-            }
-          }
-
-          await peekCircuit();
+        if (input) {
+          messages.push(new HumanMessage(input));
         }
 
-        setSending(false);
-      });
-    }
+        if (!(lastMsg instanceof AIMessage)) {
+          msgs.push(new AIMessage(""));
+        }
+
+        lastMsg = msgs.slice(-1)[0];
+
+        waitFor(() => setMessages([...msgs.slice(0, -1), lastMsg]));
+
+        for await (const event of events) {
+          if (streamEvents!.includes(event.event)) {
+            const chunk = event.data?.chunk;
+
+            if (chunk) {
+              waitFor(async () => {
+                lastMsg = await processMessageChunk(
+                  chunk as StringPromptValue | AIMessageChunk,
+                  lastMsg,
+                );
+              });
+            }
+          } else if (
+            event.event === "on_custom_event" &&
+            event.event.startsWith("Thinky2:")
+          ) {
+            console.log("Thinky2-event");
+            console.log(event.name);
+            waitFor(
+              async () =>
+                await processThinky2Event(
+                  event.event.replace("Thinky2:", ""),
+                  event.data,
+                ),
+            );
+          }
+        }
+
+        await peekCircuit();
+      }
+
+      setSending(false);
+    });
   };
 
   const sendMessage = (input: string) => {
@@ -208,17 +206,15 @@ export default function Thinky2({
   }, [circuitLookup, root, jwt]);
 
   useEffect(() => {
-    if (!sending) {
-      const work = async () => {
-        await peekCircuit();
+    const work = async () => {
+      await peekCircuit();
 
-        processChat();
-      };
+      processChat();
+    };
 
-      setSending(true);
+    setSending(true);
 
-      waitFor(work);
-    }
+    waitFor(work);
   }, [circuit]);
 
   return (
