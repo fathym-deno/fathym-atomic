@@ -77,6 +77,7 @@ export default function ChatInput(props: ChatInputProps): JSX.Element {
       />
 
       <button
+        type="button"
         onClick={sendMessage}
         class="bg-blue-600 dark:bg-blue-800 text-white p-2 rounded-r-lg text-lg"
         disabled={props.sending}

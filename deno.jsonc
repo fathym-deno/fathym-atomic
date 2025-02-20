@@ -43,7 +43,7 @@
     "exclude": [],
     "rules": {
       "include": [],
-      "exclude": []
+      "exclude": ["jsx-no-useless-fragment"]
     }
   },
   "unstable": [

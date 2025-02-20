@@ -1,3 +1,4 @@
+// deno-lint-ignore-file jsx-no-useless-fragment
 import {} from "preact/hooks";
 import {
   Action,
@@ -127,8 +128,10 @@ export default function EaCManageSourceForm(
                 placeholder="Enter EaC IoT cloud"
               >
                 <option value="">-- Select Source action --</option>
-                {actionOptions.map((option) => {
-                  return <option value={option.Lookup}>{option.Name}</option>;
+                {actionOptions.map((option, i) => {
+                  return (
+                    <option key={i} value={option.Lookup}>{option.Name}</option>
+                  );
                 })}
               </Select>
             </div>
@@ -177,8 +180,8 @@ export default function EaCManageSourceForm(
                   placeholder="Enter EaC source organization"
                 >
                   <option value="">-- Select GitHub organization --</option>
-                  {props.organizationOptions.map((option) => {
-                    return <option value={option}>{option}</option>;
+                  {props.organizationOptions.map((option, i) => {
+                    return <option key={i} value={option}>{option}</option>;
                   })}
                 </Select>
               </div>

@@ -57,10 +57,10 @@ export default function CloudConnectNewSubForm(
           <Select id="billing-scope" name="billing-scope" required>
             <option value="">-- Select an existing billing account --</option>
 
-            {Object.keys(props.billingScopes).map((id) => {
+            {Object.keys(props.billingScopes).map((id, i) => {
               const name = props.billingScopes[id];
 
-              return <option value={id}>{name}</option>;
+              return <option key={i} value={id}>{name}</option>;
             })}
           </Select>
         </div>

@@ -37,10 +37,14 @@ export function CloudConnectExistingForm(
           <Select id="subscription-id" name="subscription-id" required>
             <option value="">-- Select an existing subscription --</option>
 
-            {Object.keys(props.subs).map((id) => {
+            {Object.keys(props.subs).map((id, i) => {
               const name = props.subs[id];
 
-              return <option value={id}>{name}</option>;
+              return (
+                <option key={i} value={id}>
+                  {name}
+                </option>
+              );
             })}
           </Select>
         </div>

@@ -1,3 +1,4 @@
+// deno-lint-ignore-file jsx-no-useless-fragment
 import {
   Action,
   ActionGroup,
@@ -149,8 +150,10 @@ export default function EaCManageSecretForm(
               placeholder="Enter EaC secret cloud"
             >
               <option value="">-- Select EaC cloud --</option>
-              {props.cloudOptions.map((option) => {
-                return <option value={option.Lookup}>{option.Name}</option>;
+              {props.cloudOptions.map((option, i) => {
+                return (
+                  <option key={i} value={option.Lookup}>{option.Name}</option>
+                );
               })}
             </Select>
           </div>
@@ -174,8 +177,12 @@ export default function EaCManageSecretForm(
             >
               <option value="">-- Select EaC key vault --</option>
               {curCloudLookup &&
-                props.keyVaultOptions[curCloudLookup].map((option) => {
-                  return <option value={option.Lookup}>{option.Name}</option>;
+                props.keyVaultOptions[curCloudLookup].map((option, i) => {
+                  return (
+                    <option key={i} value={option.Lookup}>
+                      {option.Name}
+                    </option>
+                  );
                 })}
             </Select>
           </div>

@@ -127,8 +127,12 @@ export default function EaCManageIoTForm(
               placeholder="Enter EaC IoT cloud"
             >
               <option value="">-- Select EaC cloud --</option>
-              {props.cloudOptions.map((option) => {
-                return <option value={option.Lookup}>{option.Name}</option>;
+              {props.cloudOptions.map((option, i) => {
+                return (
+                  <option key={i} value={option.Lookup}>
+                    {option.Name}
+                  </option>
+                );
               })}
             </Select>
           </div>
@@ -152,8 +156,12 @@ export default function EaCManageIoTForm(
             >
               <option value="">-- Select EaC resource group --</option>
               {curCloudLookup &&
-                props.resGroupOptions[curCloudLookup].map((option) => {
-                  return <option value={option.Lookup}>{option.Name}</option>;
+                props.resGroupOptions[curCloudLookup].map((option, i) => {
+                  return (
+                    <option key={i} value={option.Lookup}>
+                      {option.Name}
+                    </option>
+                  );
                 })}
             </Select>
           </div>
