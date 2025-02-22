@@ -28,5 +28,3 @@ export {
 export type { Runnable } from "npm:@langchain/core@0.2.30/runnables";
 export { RemoteRunnable } from "npm:@langchain/core@0.2.30/runnables/remote";
 export type { StringPromptValue } from "npm:@langchain/core@0.2.30/prompt_values";
-
-export const IS_BROWSER = typeof document !== "undefined";
