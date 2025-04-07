@@ -24,7 +24,7 @@ export {
   type BaseMessage,
   HumanMessage,
   HumanMessageChunk,
-} from "npm:@langchain/core@0.2.30/messages";
-export type { Runnable } from "npm:@langchain/core@0.2.30/runnables";
-export { RemoteRunnable } from "npm:@langchain/core@0.2.30/runnables/remote";
-export type { StringPromptValue } from "npm:@langchain/core@0.2.30/prompt_values";
+} from "npm:@langchain/core@0.3.42/messages";
+export type { Runnable } from "npm:@langchain/core@0.3.42/runnables";
+export { RemoteRunnable } from "npm:@langchain/core@0.3.42/runnables/remote";
+export type { StringPromptValue } from "npm:@langchain/core@0.3.42/prompt_values";
